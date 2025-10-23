@@ -1,0 +1,167 @@
+2025-10-22T09:15:11.237-05:00  INFO 9128 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 9128 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
+2025-10-22T09:15:11.251-05:00 DEBUG 9128 --- [main] c.n.cig.cayman.document.Application      : Running with Spring Boot v3.5.6, Spring v6.2.11
+2025-10-22T09:15:11.251-05:00  INFO 9128 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
+2025-10-22T09:15:13.157-05:00  INFO 9128 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-10-22T09:15:13.172-05:00  INFO 9128 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-22T09:15:13.172-05:00  INFO 9128 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-22T09:15:13.266-05:00  INFO 9128 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-22T09:15:13.266-05:00  INFO 9128 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1929 ms
+2025-10-22T09:15:13.579-05:00 DEBUG 9128 --- [main] c.n.c.c.document.model.ConnectCabinet    : username: liferay
+2025-10-22T09:15:13.579-05:00 DEBUG 9128 --- [main] c.n.c.c.document.model.ConnectCabinet    : password: Lifer@y1
+2025-10-22T09:15:13.579-05:00 DEBUG 9128 --- [main] c.n.c.c.document.model.ConnectCabinet    : cabinetName: worcuat
+2025-10-22T09:15:13.579-05:00 DEBUG 9128 --- [main] c.n.c.c.document.model.ConnectCabinet    : jtsIP: 127.0.0.1
+2025-10-22T09:15:13.579-05:00 DEBUG 9128 --- [main] c.n.c.c.document.model.ConnectCabinet    : jtsPort: 3333
+2025-10-22T09:15:13.579-05:00 DEBUG 9128 --- [main] c.n.c.c.document.model.ConnectCabinet    : userExists: N
+2025-10-22T09:15:13.579-05:00  INFO 9128 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
+2025-10-22T09:15:13.579-05:00 DEBUG 9128 --- [main] c.n.c.c.d.implementation.Operations      : XML to be executed: <?xml version="1.0"?><NGOConnectCabinet_Input><Option>NGOConnectCabinet</Option><CabinetName>worcuat</CabinetName><ProductName>OmniDocs</ProductName><UserName>liferay</UserName><UserPassword>Lifer@y1</UserPassword><UserExist>N</UserExist><UserType>U</UserType><Locale>en_us</Locale></NGOConnectCabinet_Input>
+2025-10-22T09:15:13.579-05:00  INFO 9128 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-22T09:15:13.626-05:00 DEBUG 9128 --- [main] c.n.c.c.d.implementation.Operations      : XML After Executing: <?xml version="1.0"?>
+<NGOConnectCabinet_Output>
+<Option>NGOConnectCabinet</Option>
+<Folders>
+<Folder>
+<FolderIndex>0</FolderIndex><ParentFolderIndex>-1</ParentFolderIndex><FolderName>worcuat</FolderName><OwnerIndex>1</OwnerIndex><CreationDateTime>2020-06-02 01:18:17.81</CreationDateTime><RevisedDateTime>2020-08-18 09:53:11.247</RevisedDateTime><AccessDateTime>2025-10-16 13:48:00.0</AccessDateTime><DataDefIndex>0</DataDefIndex><AccessType>S</AccessType><ImageVolumeIndex>1</ImageVolumeIndex><FolderType>G</FolderType><FolderLock>N</FolderLock><Location>R</Location><DeletedDateTime>2020-06-02 01:18:17.81</DeletedDateTime><VersionFlag>N</VersionFlag><ExpiryDateTime>2120-06-01 01:18:17.81</ExpiryDateTime><Comment></Comment><ACL>G1#010000011,</ACL><FinalizedFlag>N</FinalizedFlag><FinalizedDateTime>2020-06-02 01:18:17.81</FinalizedDateTime><ACLMoreFlag>N</ACLMoreFlag><LoginUserRights>111111111111</LoginUserRights><Owner>Supervisor</Owner><NoOfDocuments>0</NoOfDocuments><NoOfSubFolders>1</NoOfSubFolders></Folder>
+</Folders>
+<Cabinet>
+<CabinetName>worcuat</CabinetName><CabinetType>B</CabinetType><CreationDateTime>2020-06-02 01:18:17.81</CreationDateTime><VersionFlag>N</VersionFlag><SecurityLevel>2</SecurityLevel><FTSDatabasePath></FTSDatabasePath><CabinetLockFlag>N</CabinetLockFlag><ImageVolumeIndex>1</ImageVolumeIndex><LoginUserIndex>25</LoginUserIndex><UserPasswordExpire>N</UserPasswordExpire><LastLoginTime>2025-10-22 09:14:31.27</LastLoginTime><IsMakerCheckerEnabled>N</IsMakerCheckerEnabled><IsAdmin>Y</IsAdmin><EnableDDTFTS>N</EnableDDTFTS><BuildVersion>10.1.00</BuildVersion><UserName>Liferay</UserName><UserInbox>352</UserInbox><UserSentItem>353</UserSentItem><UserTrash>354</UserTrash><PersonalName>New User</PersonalName><Account>1</Account><ThemeColor>1281dd</ThemeColor><PreferredFolderIndex>0</PreferredFolderIndex><EnableDataSecurity>N</EnableDataSecurity><Privileges>1111111111111111</Privileges></Cabinet>
+<Services>
+</Services>
+<UserDBId>506433344</UserDBId><UserType>S</UserType><Status>0</Status><LeftLoginAttempts>5</LeftLoginAttempts><twoFactorAuthenticationFlag></twoFactorAuthenticationFlag></NGOConnectCabinet_Output>
+
+2025-10-22T09:15:13.626-05:00  INFO 9128 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
+2025-10-22T09:15:13.626-05:00  INFO 9128 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
+2025-10-22T09:15:13.626-05:00 DEBUG 9128 --- [main] c.n.c.c.d.implementation.Operations      : Parameters provided in com.newgen.cig.cayman.document.implementation.Operations : XML: <?xml version="1.0"?>
+<NGOConnectCabinet_Output>
+<Option>NGOConnectCabinet</Option>
+<Folders>
+<Folder>
+<FolderIndex>0</FolderIndex><ParentFolderIndex>-1</ParentFolderIndex><FolderName>worcuat</FolderName><OwnerIndex>1</OwnerIndex><CreationDateTime>2020-06-02 01:18:17.81</CreationDateTime><RevisedDateTime>2020-08-18 09:53:11.247</RevisedDateTime><AccessDateTime>2025-10-16 13:48:00.0</AccessDateTime><DataDefIndex>0</DataDefIndex><AccessType>S</AccessType><ImageVolumeIndex>1</ImageVolumeIndex><FolderType>G</FolderType><FolderLock>N</FolderLock><Location>R</Location><DeletedDateTime>2020-06-02 01:18:17.81</DeletedDateTime><VersionFlag>N</VersionFlag><ExpiryDateTime>2120-06-01 01:18:17.81</ExpiryDateTime><Comment></Comment><ACL>G1#010000011,</ACL><FinalizedFlag>N</FinalizedFlag><FinalizedDateTime>2020-06-02 01:18:17.81</FinalizedDateTime><ACLMoreFlag>N</ACLMoreFlag><LoginUserRights>111111111111</LoginUserRights><Owner>Supervisor</Owner><NoOfDocuments>0</NoOfDocuments><NoOfSubFolders>1</NoOfSubFolders></Folder>
+</Folders>
+<Cabinet>
+<CabinetName>worcuat</CabinetName><CabinetType>B</CabinetType><CreationDateTime>2020-06-02 01:18:17.81</CreationDateTime><VersionFlag>N</VersionFlag><SecurityLevel>2</SecurityLevel><FTSDatabasePath></FTSDatabasePath><CabinetLockFlag>N</CabinetLockFlag><ImageVolumeIndex>1</ImageVolumeIndex><LoginUserIndex>25</LoginUserIndex><UserPasswordExpire>N</UserPasswordExpire><LastLoginTime>2025-10-22 09:14:31.27</LastLoginTime><IsMakerCheckerEnabled>N</IsMakerCheckerEnabled><IsAdmin>Y</IsAdmin><EnableDDTFTS>N</EnableDDTFTS><BuildVersion>10.1.00</BuildVersion><UserName>Liferay</UserName><UserInbox>352</UserInbox><UserSentItem>353</UserSentItem><UserTrash>354</UserTrash><PersonalName>New User</PersonalName><Account>1</Account><ThemeColor>1281dd</ThemeColor><PreferredFolderIndex>0</PreferredFolderIndex><EnableDataSecurity>N</EnableDataSecurity><Privileges>1111111111111111</Privileges></Cabinet>
+<Services>
+</Services>
+<UserDBId>506433344</UserDBId><UserType>S</UserType><Status>0</Status><LeftLoginAttempts>5</LeftLoginAttempts><twoFactorAuthenticationFlag></twoFactorAuthenticationFlag></NGOConnectCabinet_Output>
+, key: UserDBId
+2025-10-22T09:15:13.626-05:00 DEBUG 9128 --- [main] c.n.c.c.d.implementation.Operations      : Value extracted from parameters: 506433344
+2025-10-22T09:15:13.626-05:00 DEBUG 9128 --- [main] c.n.c.c.d.service.DocumentService        : SessionID/UserDBId in com.newgen.cig.cayman.document.service.DocumentService : 506433344
+2025-10-22T09:15:14.126-05:00  INFO 9128 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-22T09:15:14.235-05:00  INFO 9128 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-10-22T09:15:14.251-05:00  INFO 9128 --- [main] c.n.cig.cayman.document.Application      : Started Application in 3.809 seconds (process running for 4.332)
+2025-10-22T09:16:49.131-05:00  INFO 9128 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-22T09:16:49.194-05:00  INFO 9128 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-22T09:16:54.590-05:00  INFO 2936 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 2936 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
+2025-10-22T09:16:54.605-05:00  INFO 2936 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
+2025-10-22T09:16:56.324-05:00  INFO 2936 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-10-22T09:16:56.339-05:00  INFO 2936 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-22T09:16:56.339-05:00  INFO 2936 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-22T09:16:56.417-05:00  INFO 2936 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-22T09:16:56.417-05:00  INFO 2936 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1711 ms
+2025-10-22T09:16:56.626-05:00  INFO 2936 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
+2025-10-22T09:16:56.642-05:00  INFO 2936 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-22T09:16:56.689-05:00  INFO 2936 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
+2025-10-22T09:16:56.689-05:00  INFO 2936 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
+2025-10-22T09:16:57.157-05:00  INFO 2936 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-22T09:16:57.220-05:00  INFO 2936 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-10-22T09:16:57.235-05:00  INFO 2936 --- [main] c.n.cig.cayman.document.Application      : Started Application in 3.392 seconds (process running for 3.956)
+2025-10-22T09:17:29.404-05:00  INFO 2936 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-22T09:17:29.405-05:00  INFO 2936 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-22T09:17:29.406-05:00  INFO 2936 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-10-22T09:17:29.467-05:00  INFO 2936 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.DocumentImpl    : Document Download XML: <?xml version="1.0"?><NGOGetDocumentBDO><cabinetName>worcuat</cabinetName><docIndex>100</docIndex><siteId>1</siteId><volumeId>1</volumeId><userDBId>-1540478372</userDBId><locale>en_us</locale></NGOGetDocumentBDO>
+2025-10-22T09:17:29.468-05:00  INFO 2936 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-22T09:17:29.469-05:00 ERROR 2936 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.Operations      : java.lang.StringIndexOutOfBoundsException: begin 7, end -1, length 212
+2025-10-22T09:17:29.470-05:00 ERROR 2936 --- [http-nio-8081-exec-1] c.n.c.c.d.controller.DocumentController  : java.lang.StringIndexOutOfBoundsException: begin 7, end -1, length 212
+2025-10-22T09:19:18.247-05:00  INFO 2936 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-22T09:19:18.299-05:00  INFO 2936 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-22T09:19:23.388-05:00  INFO 4560 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 4560 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
+2025-10-22T09:19:23.388-05:00  INFO 4560 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
+2025-10-22T09:19:24.968-05:00  INFO 4560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-10-22T09:19:24.984-05:00  INFO 4560 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-22T09:19:24.984-05:00  INFO 4560 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-22T09:19:25.077-05:00  INFO 4560 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-22T09:19:25.077-05:00  INFO 4560 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1593 ms
+2025-10-22T09:19:25.343-05:00  INFO 4560 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
+2025-10-22T09:19:25.343-05:00  INFO 4560 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-22T09:19:25.405-05:00  INFO 4560 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
+2025-10-22T09:19:25.405-05:00  INFO 4560 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
+2025-10-22T09:19:25.905-05:00  INFO 4560 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-22T09:19:25.983-05:00  INFO 4560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-10-22T09:19:25.999-05:00  INFO 4560 --- [main] c.n.cig.cayman.document.Application      : Started Application in 3.366 seconds (process running for 3.895)
+2025-10-22T09:19:32.778-05:00  INFO 4560 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-22T09:19:32.779-05:00  INFO 4560 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-22T09:19:32.781-05:00  INFO 4560 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-10-22T09:19:32.846-05:00  INFO 4560 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.DocumentImpl    : Document Download XML: <? xml version="1.0"encoding="UTF-8" ?><NGOGetDocumentBDO><cabinetName>worcuat</cabinetName><docIndex>100</docIndex><siteId>1</siteId><volumeId>1</volumeId><userDBId>-1733876929</userDBId><locale>en_us</locale></NGOGetDocumentBDO>
+2025-10-22T09:19:32.847-05:00  INFO 4560 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-22T09:19:32.848-05:00 ERROR 4560 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.Operations      : java.lang.StringIndexOutOfBoundsException: begin 7, end -1, length 230
+2025-10-22T09:19:32.848-05:00 ERROR 4560 --- [http-nio-8081-exec-1] c.n.c.c.d.controller.DocumentController  : java.lang.StringIndexOutOfBoundsException: begin 7, end -1, length 230
+2025-10-22T09:21:11.987-05:00  INFO 4560 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-22T09:21:12.033-05:00  INFO 4560 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-22T09:21:17.470-05:00  INFO 8716 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 8716 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
+2025-10-22T09:21:17.476-05:00  INFO 8716 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
+2025-10-22T09:21:19.102-05:00  INFO 8716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-10-22T09:21:19.113-05:00  INFO 8716 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-22T09:21:19.113-05:00  INFO 8716 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-22T09:21:19.164-05:00  INFO 8716 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-22T09:21:19.164-05:00  INFO 8716 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1564 ms
+2025-10-22T09:21:19.476-05:00  INFO 8716 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
+2025-10-22T09:21:19.476-05:00  INFO 8716 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-22T09:21:19.523-05:00  INFO 8716 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
+2025-10-22T09:21:19.523-05:00  INFO 8716 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
+2025-10-22T09:21:20.071-05:00  INFO 8716 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-22T09:21:20.137-05:00  INFO 8716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-10-22T09:21:20.151-05:00  INFO 8716 --- [main] c.n.cig.cayman.document.Application      : Started Application in 3.506 seconds (process running for 4.027)
+2025-10-22T09:21:20.315-05:00  INFO 8716 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-22T09:21:20.316-05:00  INFO 8716 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-22T09:21:20.317-05:00  INFO 8716 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-10-22T09:21:20.396-05:00  INFO 8716 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.DocumentImpl    : Document Download XML: <? xml version="1.0" encoding="UTF-8" ?><NGOGetDocumentBDO><cabinetName>worcuat</cabinetName><docIndex>100</docIndex><siteId>1</siteId><volumeId>1</volumeId><userDBId>-459826266</userDBId><locale>en_us</locale></NGOGetDocumentBDO>
+2025-10-22T09:21:20.396-05:00  INFO 8716 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-22T09:21:20.397-05:00 ERROR 8716 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.Operations      : java.lang.StringIndexOutOfBoundsException: begin 7, end -1, length 230
+2025-10-22T09:21:20.398-05:00 ERROR 8716 --- [http-nio-8081-exec-1] c.n.c.c.d.controller.DocumentController  : java.lang.StringIndexOutOfBoundsException: begin 7, end -1, length 230
+2025-10-22T09:22:44.428-05:00  INFO 8716 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-22T09:22:44.491-05:00  INFO 8716 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-22T09:22:50.728-05:00  INFO 9192 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 9192 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
+2025-10-22T09:22:50.728-05:00  INFO 9192 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
+2025-10-22T09:22:52.358-05:00  INFO 9192 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-10-22T09:22:52.374-05:00  INFO 9192 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-22T09:22:52.374-05:00  INFO 9192 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-22T09:22:52.437-05:00  INFO 9192 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-22T09:22:52.437-05:00  INFO 9192 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1597 ms
+2025-10-22T09:22:52.640-05:00  INFO 9192 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
+2025-10-22T09:22:52.640-05:00  INFO 9192 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-22T09:22:52.687-05:00  INFO 9192 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
+2025-10-22T09:22:52.687-05:00  INFO 9192 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
+2025-10-22T09:22:53.093-05:00  INFO 9192 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-22T09:22:53.155-05:00  INFO 9192 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-10-22T09:22:53.171-05:00  INFO 9192 --- [main] c.n.cig.cayman.document.Application      : Started Application in 3.091 seconds (process running for 3.511)
+2025-10-22T09:23:13.277-05:00  INFO 9192 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-22T09:23:13.278-05:00  INFO 9192 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-22T09:23:13.279-05:00  INFO 9192 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-10-22T09:23:13.343-05:00  INFO 9192 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.DocumentImpl    : Document Download XML: <? xml version="1.0" encoding="UTF-8" ?><NGOGetDocumentBDO><cabinetName>worcuat</cabinetName><docIndex>100</docIndex><siteId>1</siteId><volumeId>1</volumeId><userDBId>697956803</userDBId><locale>en_us</locale></NGOGetDocumentBDO>
+2025-10-22T09:23:13.343-05:00  INFO 9192 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-22T09:23:13.345-05:00 ERROR 9192 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.Operations      : java.lang.StringIndexOutOfBoundsException: begin 7, end -1, length 229
+2025-10-22T09:23:13.345-05:00 ERROR 9192 --- [http-nio-8081-exec-1] c.n.c.c.d.controller.DocumentController  : java.lang.StringIndexOutOfBoundsException: begin 7, end -1, length 229
+2025-10-22T09:27:03.034-05:00  INFO 9192 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-22T09:27:03.081-05:00  INFO 9192 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-22T09:47:10.141-05:00  INFO 8080 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 8080 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
+2025-10-22T09:47:10.141-05:00  INFO 8080 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
+2025-10-22T09:47:11.664-05:00  INFO 8080 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-10-22T09:47:11.680-05:00  INFO 8080 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-22T09:47:11.680-05:00  INFO 8080 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-22T09:47:11.742-05:00  INFO 8080 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-22T09:47:11.742-05:00  INFO 8080 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1538 ms
+2025-10-22T09:47:12.008-05:00  INFO 8080 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
+2025-10-22T09:47:12.008-05:00  INFO 8080 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-22T09:47:12.055-05:00  INFO 8080 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
+2025-10-22T09:47:12.055-05:00  INFO 8080 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
+2025-10-22T09:47:12.463-05:00  INFO 8080 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-22T09:47:12.541-05:00  INFO 8080 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-10-22T09:47:12.556-05:00  INFO 8080 --- [main] c.n.cig.cayman.document.Application      : Started Application in 3.135 seconds (process running for 3.61)
+2025-10-22T09:47:25.590-05:00  INFO 8080 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-22T09:47:25.591-05:00  INFO 8080 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-22T09:47:25.592-05:00  INFO 8080 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-10-22T09:47:25.647-05:00  INFO 8080 --- [http-nio-8081-exec-1] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
+2025-10-22T09:47:25.647-05:00  INFO 8080 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-22T09:47:25.676-05:00  INFO 8080 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
+2025-10-22T09:47:25.676-05:00  INFO 8080 --- [http-nio-8081-exec-1] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
+2025-10-22T10:00:26.846-05:00  INFO 8080 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-22T10:00:26.893-05:00  INFO 8080 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete

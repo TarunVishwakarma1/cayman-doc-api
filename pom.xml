@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.5.6</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.newgen.cig.cayman.document</groupId>
+	<artifactId>caymen-document-api</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>caymen-document-api</name>
+	<description>Demo project for Spring Boot</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+        <!--including localjars-->
+        <lib.path>${project.basedir}/libs</lib.path>
+	</properties>
+	<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging -->
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.6.1.Final</version>
+        </dependency>
+
+        <!-- local JAR dependencies -->
+        <dependency>
+            <groupId>com.newgen</groupId>
+            <artifactId>odweb</artifactId>
+            <scope>system</scope>
+            <version>1</version>
+            <systemPath>${lib.path}/odweb.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.newgen</groupId>
+            <artifactId>jtssessionbean</artifactId>
+            <scope>system</scope>
+            <version>1</version>
+            <systemPath>${lib.path}/jtssessionbean.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.newgen</groupId>
+            <artifactId>ejbclient</artifactId>
+            <scope>system</scope>
+            <version>1</version>
+            <systemPath>${lib.path}/ejbclient.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.newgen</groupId>
+            <artifactId>log4j</artifactId>
+            <scope>system</scope>
+            <version>1.2.14</version>
+            <systemPath>${lib.path}/log4j.jar</systemPath>
+        </dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

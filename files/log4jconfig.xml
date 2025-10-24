@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+   <Appenders>
+      <RollingFile name="transactionfree_islogs_NGerrorLogger" fileName="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/Error.log" filePattern="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/Error%i.log">
+         <PatternLayout pattern="[%d{dd MMM yyyy HH:mm:ss,SSS}] - %n%m%n" />
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+         </Policies>
+         <DefaultRolloverStrategy max="20" />
+      </RollingFile>
+      <RollingFile name="transactionfree_islogs_NGconsoleLogger" fileName="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/Console.log" filePattern="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/Console%i.log">
+         <PatternLayout pattern="[%d{dd MMM yyyy HH:mm:ss,SSS}] - %n%m%n" />
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+         </Policies>
+         <DefaultRolloverStrategy max="20" />
+      </RollingFile>
+      <RollingFile name="transactionfree_islogs_NGtransactionLogger" fileName="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/Transaction.log" filePattern="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/Transaction%i.log">
+         <PatternLayout pattern="[%d{dd MMM yyyy HH:mm:ss,SSS}] - %m%n" />
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+         </Policies>
+         <DefaultRolloverStrategy max="20" />
+      </RollingFile>
+      <RollingFile name="transactionfree_islogs_NGXMLLogger" fileName="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/XML.log" filePattern="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/XML%i.log">
+         <PatternLayout pattern="[%d{dd MMM yyyy HH:mm:ss,SSS}] - %n%m%n" />
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+         </Policies>
+         <DefaultRolloverStrategy max="20" />
+      </RollingFile>
+      <RollingFile name="transactionfree_islogs_NGQueryLogger" fileName="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/Query.log" filePattern="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/Query%i.log">
+         <PatternLayout pattern="[%d{dd MMM yyyy HH:mm:ss,SSS}] - %n%m%n" />
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+         </Policies>
+         <DefaultRolloverStrategy max="20" />
+      </RollingFile>
+      <RollingFile name="transactionfree_islogs_NGTimeThresholdLogger" fileName="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/TimeThreshHold.log" filePattern="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/TimeThreshHold%i.log">
+         <PatternLayout pattern="[%d{dd MMM yyyy HH:mm:ss,SSS}] - %n%m%n" />
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+         </Policies>
+         <DefaultRolloverStrategy max="20" />
+      </RollingFile>
+      <RollingFile name="transactionfree_islogs_NGSizeThresholdLogger" fileName="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/SizeThreshHold.log" filePattern="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/SizeThreshHold%i.log">
+         <PatternLayout pattern="[%d{dd MMM yyyy HH:mm:ss,SSS}] - %n%m%n" />
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+         </Policies>
+         <DefaultRolloverStrategy max="20" />
+      </RollingFile>
+      <RollingFile name="transactionfree_islogs_NGUserXmlLogger" fileName="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/UserXml.log" filePattern="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/UserXml%i.log">
+         <PatternLayout pattern="[%d{dd MMM yyyy HH:mm:ss,SSS}] - %n%m%n" />
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+         </Policies>
+         <DefaultRolloverStrategy max="20" />
+      </RollingFile>
+      <RollingFile name="transactionfree_islogs_NGUserConsoleLogger" fileName="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/UserConsole.log" filePattern="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/UserConsole%i.log">
+         <PatternLayout pattern="[%d{dd MMM yyyy HH:mm:ss,SSS}] - %n%m%n" />
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+         </Policies>
+         <DefaultRolloverStrategy max="20" />
+      </RollingFile>
+      <RollingFile name="transactionfree_islogs_NGAPIXmlLogger" fileName="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/APIXml.log" filePattern="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/APIXml%i.log">
+         <PatternLayout pattern="[%d{dd MMM yyyy HH:mm:ss,SSS}] - %n%m%n" />
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+         </Policies>
+         <DefaultRolloverStrategy max="20" />
+      </RollingFile>
+      <RollingFile name="transactionfree_islogs_NGAPIConsoleLogger" fileName="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/APIConsole.log" filePattern="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/APIConsole%i.log">
+         <PatternLayout pattern="[%d{dd MMM yyyy HH:mm:ss,SSS}] - %n%m%n" />
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+         </Policies>
+         <DefaultRolloverStrategy max="20" />
+      </RollingFile>
+      <RollingFile name="transactionfree_islogs_NGJSONLogger" fileName="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/JSON.log" filePattern="C:/Newgen/Installation/Instance-one/jBoss 8.0/bin/Newgen/NGLogs/TransactionFree/ISLogs/JSON%i.log">
+         <PatternLayout pattern="[%d{dd MMM yyyy HH:mm:ss,SSS}] - %n%m%n" />
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+         </Policies>
+         <DefaultRolloverStrategy max="20" />
+      </RollingFile>
+   </Appenders>
+   <Loggers>
+      <Logger name="transactionfree_islogs_NGerrorLogger" level="debug" additivity="false">
+         <AppenderRef ref="transactionfree_islogs_NGerrorLogger" />
+      </Logger>
+      <Logger name="transactionfree_islogs_NGconsoleLogger" level="debug" additivity="false">
+         <AppenderRef ref="transactionfree_islogs_NGconsoleLogger" />
+      </Logger>
+      <Logger name="transactionfree_islogs_NGtransactionLogger" level="debug" additivity="false">
+         <AppenderRef ref="transactionfree_islogs_NGtransactionLogger" />
+      </Logger>
+      <Logger name="transactionfree_islogs_NGXMLLogger" level="debug" additivity="false">
+         <AppenderRef ref="transactionfree_islogs_NGXMLLogger" />
+      </Logger>
+      <Logger name="transactionfree_islogs_NGQueryLogger" level="debug" additivity="false">
+         <AppenderRef ref="transactionfree_islogs_NGQueryLogger" />
+      </Logger>
+      <Logger name="transactionfree_islogs_NGTimeThresholdLogger" level="debug" additivity="false">
+         <AppenderRef ref="transactionfree_islogs_NGTimeThresholdLogger" />
+      </Logger>
+      <Logger name="transactionfree_islogs_NGSizeThresholdLogger" level="debug" additivity="false">
+         <AppenderRef ref="transactionfree_islogs_NGSizeThresholdLogger" />
+      </Logger>
+      <Logger name="transactionfree_islogs_NGUserXmlLogger" level="debug" additivity="false">
+         <AppenderRef ref="transactionfree_islogs_NGUserXmlLogger" />
+      </Logger>
+      <Logger name="transactionfree_islogs_NGUserConsoleLogger" level="debug" additivity="false">
+         <AppenderRef ref="transactionfree_islogs_NGUserConsoleLogger" />
+      </Logger>
+      <Logger name="transactionfree_islogs_NGAPIXmlLogger" level="debug" additivity="false">
+         <AppenderRef ref="transactionfree_islogs_NGAPIXmlLogger" />
+      </Logger>
+      <Logger name="transactionfree_islogs_NGAPIConsoleLogger" level="debug" additivity="false">
+         <AppenderRef ref="transactionfree_islogs_NGAPIConsoleLogger" />
+      </Logger>
+      <Logger name="transactionfree_islogs_NGJSONLogger" level="debug" additivity="false">
+         <AppenderRef ref="transactionfree_islogs_NGJSONLogger" />
+      </Logger>
+   </Loggers>
+</Configuration>

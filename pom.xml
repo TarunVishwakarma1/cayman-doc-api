@@ -53,6 +53,13 @@
             <artifactId>jboss-logging</artifactId>
             <version>3.6.1.Final</version>
         </dependency>
+        <dependency>
+            <groupId>xom</groupId>
+            <artifactId>xom</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
 
         <!-- local JAR dependencies -->
         <dependency>
@@ -104,6 +111,34 @@
             <scope>system</scope>
             <version>1</version>
             <systemPath>${lib.path}/nsms.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.newgen</groupId>
+            <artifactId>niplj</artifactId>
+            <scope>system</scope>
+            <version>1</version>
+            <systemPath>${lib.path}/NIPLJ.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.newgen</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <scope>system</scope>
+            <version>1.11.40</version>
+            <systemPath>${lib.path}/aws-java-sdk.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.newgen</groupId>
+            <artifactId>omnishared</artifactId>
+            <scope>system</scope>
+            <version>1</version>
+            <systemPath>${lib.path}/omnishared.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.newgen</groupId>
+            <artifactId>nglogger</artifactId>
+            <scope>system</scope>
+            <version>1</version>
+            <systemPath>${lib.path}/nglogger.jar</systemPath>
         </dependency>
 	</dependencies>
 

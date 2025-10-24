@@ -33,4 +33,8 @@ public class DocumentService {
     public String downloadDocument(String docIndex) throws Exception {
         return doc.download(docIndex);
     }
+
+    public byte[] getDocBytes() throws Exception {
+        return doc.docByteArray();
+    }
 }

@@ -1,12 +1,19 @@
 package com.newgen.cig.cayman.document.implementation;
 
+import ISPack.CImageServer;
+import ISPack.CPISDocumentTxn;
+import ISPack.ISUtil.JPISException;
+import Jdts.DataObject.JPDBString;
 import com.newgen.cig.cayman.document.interfaces.DocumentInterface;
 import com.newgen.cig.cayman.document.model.CabinetProperties;
 import com.newgen.cig.cayman.document.model.ConnectCabinet;
 import com.newgen.cig.cayman.document.model.GlobalSessionService;
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 
 @Service
 public class DocumentImpl implements DocumentInterface {
@@ -37,7 +44,33 @@ public class DocumentImpl implements DocumentInterface {
     }
 
     @Override
-    public String getGetDocumentPropertyXml(String cabinetName, String userDbId, String creationDateTime, String docIndex, String dataAlsoFlag, String versionNo) {
+    public byte[] docByteArray() throws Exception {
+        String docId = "400";
+
+        JPDBString oSiteName = new JPDBString();
+        try(ByteArrayOutputStream out = new ByteArrayOutputStream()){
+            CImageServer.IsDebugLogEnabled = true;
+            CPISDocumentTxn.GetDocInFile_MT(
+                    null,
+                    properties.getSiteIP(),
+                    Short.parseShort(properties.getSitePort()),
+                    properties.getCabinetName(),
+                    Short.parseShort(properties.getSiteId()),
+                    Short.parseShort(properties.getVolumeId()),
+                    Short.parseShort(docId),
+                    "",
+                    out,
+                    oSiteName);
+            byte[] docByte = out.toByteArray();
+            LOG.debug("Document Bytes Generated: "+ Arrays.toString(docByte));
+            return docByte;
+        }catch(Exception | JPISException e){
+            LOG.error(e);
+            throw new Exception(e);
+        }
+    }
+
+    private String getGetDocumentPropertyXml(String cabinetName, String userDbId, String creationDateTime, String docIndex, String dataAlsoFlag, String versionNo) {
         String inputXml = "<?xml version=\"1.0\"?><NGOGetDocumentProperty_Input><Option>NGOGetDocumentProperty</Option>";
         inputXml = inputXml + "<CabinetName>" + cabinetName + "</CabinetName>";
         inputXml = inputXml + "<UserDBId>" + userDbId + "</UserDBId>";

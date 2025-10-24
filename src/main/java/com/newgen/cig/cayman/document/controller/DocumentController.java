@@ -1,6 +1,5 @@
 package com.newgen.cig.cayman.document.controller;
 
-import com.newgen.cig.cayman.document.model.ConnectCabinet;
 import com.newgen.cig.cayman.document.service.DocumentService;
 import jakarta.annotation.PostConstruct;
 import org.jboss.logging.Logger;
@@ -11,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -47,6 +48,19 @@ public class DocumentController {
             LOG.error(e);
             return new ResponseEntity<>("Something went wrong!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/getDoc")
+    public ResponseEntity<?> getDocBytes(){
+        try{
+            byte[] bArr = documentService.getDocBytes();
+            LOG.info(Arrays.toString(bArr));
+            return new ResponseEntity<>("Doc Stream Generated", HttpStatus.OK);
+        } catch (Exception e) {
+            LOG.error(e);
+            return new ResponseEntity<>("Something Went Wrong!", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
 }

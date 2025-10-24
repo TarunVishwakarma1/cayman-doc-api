@@ -16,6 +16,10 @@ public class CabinetProperties {
     private String siteId;
     @Value("${newgen.cayman.connect.cabinet.volumeId}")
     private String volumeId;
+    @Value("${newgen.cayman.connect.cabinet.sitePort}")
+    private String sitePort;
+    @Value("${newgen.cayman.connect.cabinet.siteIP}")
+    private String siteIP;
 
     public String getCabinetName() {
 
@@ -56,5 +60,21 @@ public class CabinetProperties {
 
     public void setVolumeId(String volumeId) {
         this.volumeId = volumeId;
+    }
+
+    public String getSitePort() {
+        return sitePort;
+    }
+
+    public void setSitePort(String sitePort) {
+        this.sitePort = sitePort;
+    }
+
+    public String getSiteIP() {
+        return siteIP;
+    }
+
+    public void setSiteIP(String siteIP) {
+        this.siteIP = siteIP;
     }
 }

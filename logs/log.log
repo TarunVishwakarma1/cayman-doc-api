@@ -1,58 +1,88 @@
-2025-10-24T02:23:18.859-05:00  INFO 11236 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 11236 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
-2025-10-24T02:23:18.861-05:00  INFO 11236 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
-2025-10-24T02:23:20.310-05:00  INFO 11236 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2025-10-24T02:23:20.322-05:00  INFO 11236 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-24T02:23:20.322-05:00  INFO 11236 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
-2025-10-24T02:23:20.392-05:00  INFO 11236 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-10-24T02:23:20.393-05:00  INFO 11236 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1455 ms
-2025-10-24T02:23:20.593-05:00  INFO 11236 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
-2025-10-24T02:23:20.595-05:00  INFO 11236 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
-2025-10-24T02:23:20.652-05:00  INFO 11236 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
-2025-10-24T02:23:20.652-05:00  INFO 11236 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
-2025-10-24T02:23:21.067-05:00  INFO 11236 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-10-24T02:23:21.140-05:00  INFO 11236 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
-2025-10-24T02:23:21.153-05:00  INFO 11236 --- [main] c.n.cig.cayman.document.Application      : Started Application in 2.873 seconds (process running for 3.303)
-2025-10-24T02:23:40.947-05:00  INFO 11236 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-24T02:23:40.983-05:00  INFO 11236 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-10-24T02:23:45.585-05:00  INFO 416 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 416 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
-2025-10-24T02:23:45.588-05:00  INFO 416 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
-2025-10-24T02:23:47.029-05:00  INFO 416 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2025-10-24T02:23:47.042-05:00  INFO 416 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-24T02:23:47.042-05:00  INFO 416 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
-2025-10-24T02:23:47.109-05:00  INFO 416 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-10-24T02:23:47.109-05:00  INFO 416 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1468 ms
-2025-10-24T02:23:47.303-05:00  INFO 416 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
-2025-10-24T02:23:47.304-05:00  INFO 416 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
-2025-10-24T02:23:47.358-05:00  INFO 416 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
-2025-10-24T02:23:47.358-05:00  INFO 416 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
-2025-10-24T02:23:47.797-05:00  INFO 416 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-10-24T02:23:47.883-05:00  INFO 416 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
-2025-10-24T02:23:47.896-05:00  INFO 416 --- [main] c.n.cig.cayman.document.Application      : Started Application in 3.073 seconds (process running for 3.951)
-2025-10-24T02:23:57.834-05:00  INFO 416 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-24T02:23:57.834-05:00  INFO 416 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-10-24T02:23:57.836-05:00  INFO 416 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2025-10-24T02:26:14.923-05:00 ERROR 416 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.DocumentImpl    : ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
-2025-10-24T02:26:14.924-05:00 ERROR 416 --- [http-nio-8081-exec-1] c.n.c.c.d.controller.DocumentController  : java.lang.Exception: ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
-2025-10-24T02:28:49.463-05:00 ERROR 416 --- [http-nio-8081-exec-2] c.n.c.c.d.implementation.DocumentImpl    : ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
-2025-10-24T02:28:49.465-05:00 ERROR 416 --- [http-nio-8081-exec-2] c.n.c.c.d.controller.DocumentController  : java.lang.Exception: ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
-2025-10-24T02:28:49.566-05:00  INFO 416 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-24T02:28:49.620-05:00  INFO 416 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-10-24T04:25:05.280-05:00  INFO 8276 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 8276 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
-2025-10-24T04:25:05.312-05:00  INFO 8276 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
-2025-10-24T04:25:06.968-05:00  INFO 8276 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2025-10-24T04:25:06.984-05:00  INFO 8276 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-24T04:25:06.984-05:00  INFO 8276 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
-2025-10-24T04:25:07.046-05:00  INFO 8276 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-10-24T04:25:07.046-05:00  INFO 8276 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1652 ms
-2025-10-24T04:25:07.282-05:00  INFO 8276 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
-2025-10-24T04:25:07.282-05:00  INFO 8276 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
-2025-10-24T04:25:07.344-05:00  INFO 8276 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
-2025-10-24T04:25:07.344-05:00  INFO 8276 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
-2025-10-24T04:25:07.789-05:00  INFO 8276 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-10-24T04:25:07.867-05:00  INFO 8276 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
-2025-10-24T04:25:07.884-05:00  INFO 8276 --- [main] c.n.cig.cayman.document.Application      : Started Application in 3.246 seconds (process running for 3.889)
-2025-10-24T04:25:22.484-05:00  INFO 8276 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-24T04:25:22.484-05:00  INFO 8276 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-10-24T04:25:22.485-05:00  INFO 8276 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-10-24T04:25:22.773-05:00 ERROR 8276 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.DocumentImpl    : ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
-2025-10-24T04:25:22.773-05:00 ERROR 8276 --- [http-nio-8081-exec-1] c.n.c.c.d.controller.DocumentController  : java.lang.Exception: ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T00:21:15.803-05:00  INFO 1628 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 1628 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
+2025-10-27T00:21:15.819-05:00  INFO 1628 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
+2025-10-27T00:21:17.470-05:00  INFO 1628 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-10-27T00:21:17.485-05:00  INFO 1628 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-27T00:21:17.485-05:00  INFO 1628 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-27T00:21:17.579-05:00  INFO 1628 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-27T00:21:17.579-05:00  INFO 1628 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1673 ms
+2025-10-27T00:21:17.796-05:00  INFO 1628 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
+2025-10-27T00:21:17.796-05:00  INFO 1628 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-27T00:21:17.874-05:00  INFO 1628 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
+2025-10-27T00:21:17.890-05:00  INFO 1628 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
+2025-10-27T00:21:18.546-05:00  INFO 1628 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-27T00:21:18.624-05:00  INFO 1628 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-10-27T00:21:18.640-05:00  INFO 1628 --- [main] c.n.cig.cayman.document.Application      : Started Application in 3.496 seconds (process running for 6.407)
+2025-10-27T00:21:21.031-05:00  INFO 1628 --- [http-nio-8081-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-27T00:21:21.032-05:00  INFO 1628 --- [http-nio-8081-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-27T00:21:21.033-05:00  INFO 1628 --- [http-nio-8081-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-10-27T00:21:21.599-05:00 ERROR 1628 --- [http-nio-8081-exec-5] c.n.c.c.d.implementation.DocumentImpl    : ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T00:21:21.600-05:00 ERROR 1628 --- [http-nio-8081-exec-5] c.n.c.c.d.controller.DocumentController  : java.lang.Exception: ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T00:21:30.025-05:00 ERROR 1628 --- [http-nio-8081-exec-3] c.n.c.c.d.implementation.DocumentImpl    : ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T00:21:30.025-05:00 ERROR 1628 --- [http-nio-8081-exec-3] c.n.c.c.d.controller.DocumentController  : java.lang.Exception: ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T00:21:39.174-05:00  INFO 1628 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-27T00:21:39.221-05:00  INFO 1628 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-27T00:22:12.029-05:00  INFO 2368 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 2368 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
+2025-10-27T00:22:12.029-05:00  INFO 2368 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
+2025-10-27T00:22:13.571-05:00  INFO 2368 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-10-27T00:22:13.587-05:00  INFO 2368 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-27T00:22:13.587-05:00  INFO 2368 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-27T00:22:13.694-05:00  INFO 2368 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-27T00:22:13.695-05:00  INFO 2368 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1587 ms
+2025-10-27T00:22:13.905-05:00  INFO 2368 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
+2025-10-27T00:22:13.905-05:00  INFO 2368 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-27T00:22:13.968-05:00  INFO 2368 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
+2025-10-27T00:22:13.968-05:00  INFO 2368 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
+2025-10-27T00:22:14.413-05:00  INFO 2368 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-27T00:22:14.477-05:00  INFO 2368 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-10-27T00:22:14.490-05:00  INFO 2368 --- [main] c.n.cig.cayman.document.Application      : Started Application in 3.387 seconds (process running for 27.775)
+2025-10-27T00:22:24.087-05:00  INFO 2368 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-27T00:22:24.088-05:00  INFO 2368 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-27T00:22:24.089-05:00  INFO 2368 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-10-27T00:26:45.804-05:00 ERROR 2368 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.DocumentImpl    : ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T00:26:45.819-05:00 ERROR 2368 --- [http-nio-8081-exec-1] c.n.c.c.d.controller.DocumentController  : java.lang.Exception: ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T00:27:54.417-05:00 ERROR 2368 --- [http-nio-8081-exec-2] c.n.c.c.d.implementation.DocumentImpl    : ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T00:27:54.417-05:00 ERROR 2368 --- [http-nio-8081-exec-2] c.n.c.c.d.controller.DocumentController  : java.lang.Exception: ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T00:29:09.577-05:00 ERROR 2368 --- [http-nio-8081-exec-4] c.n.c.c.d.implementation.DocumentImpl    : ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T00:29:09.577-05:00 ERROR 2368 --- [http-nio-8081-exec-4] c.n.c.c.d.controller.DocumentController  : java.lang.Exception: ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T00:29:09.707-05:00  INFO 2368 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-27T00:29:09.753-05:00  INFO 2368 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-27T00:52:58.395-05:00  INFO 1852 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 1852 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
+2025-10-27T00:52:58.404-05:00  INFO 1852 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
+2025-10-27T00:53:00.318-05:00  INFO 1852 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-10-27T00:53:00.334-05:00  INFO 1852 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-27T00:53:00.334-05:00  INFO 1852 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-27T00:53:00.396-05:00  INFO 1852 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-27T00:53:00.396-05:00  INFO 1852 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1907 ms
+2025-10-27T00:53:00.646-05:00  INFO 1852 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
+2025-10-27T00:53:00.662-05:00  INFO 1852 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-27T00:53:00.746-05:00  INFO 1852 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
+2025-10-27T00:53:00.746-05:00  INFO 1852 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
+2025-10-27T00:53:01.249-05:00  INFO 1852 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-27T00:53:01.436-05:00  INFO 1852 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-10-27T00:53:01.452-05:00  INFO 1852 --- [main] c.n.cig.cayman.document.Application      : Started Application in 3.903 seconds (process running for 7.007)
+2025-10-27T00:53:09.662-05:00  INFO 1852 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-27T00:53:09.662-05:00  INFO 1852 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-27T00:53:09.664-05:00  INFO 1852 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-10-27T00:53:10.185-05:00 ERROR 1852 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.DocumentImpl    : ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T00:53:10.185-05:00 ERROR 1852 --- [http-nio-8081-exec-1] c.n.c.c.d.controller.DocumentController  : java.lang.Exception: ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T01:00:24.567-05:00  INFO 1852 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-27T01:00:24.614-05:00  INFO 1852 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-27T01:00:27.492-05:00  INFO 3304 --- [main] c.n.cig.cayman.document.Application      : Starting Application using Java 17.0.16 with PID 3304 (E:\Newgen\codes\caymen-document-api-mvn\target\classes started by worcadmin in E:\Newgen\codes\caymen-document-api-mvn)
+2025-10-27T01:00:27.492-05:00  INFO 3304 --- [main] c.n.cig.cayman.document.Application      : No active profile set, falling back to 1 default profile: "default"
+2025-10-27T01:00:28.999-05:00  INFO 3304 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-10-27T01:00:29.015-05:00  INFO 3304 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-27T01:00:29.015-05:00  INFO 3304 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-27T01:00:29.093-05:00  INFO 3304 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-27T01:00:29.093-05:00  INFO 3304 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1518 ms
+2025-10-27T01:00:29.343-05:00  INFO 3304 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Connecting To Cabinet ---------//
+2025-10-27T01:00:29.343-05:00  INFO 3304 --- [main] c.n.c.c.d.implementation.Operations      : //---------- Executing XML ----------//
+2025-10-27T01:00:29.405-05:00  INFO 3304 --- [main] c.n.c.c.d.implementation.Operations      : //---------- XML Executed Successfully ----------//
+2025-10-27T01:00:29.405-05:00  INFO 3304 --- [main] c.n.c.c.document.model.ConnectCabinet    : //--------- Cabinet Connected Successfully ---------//
+2025-10-27T01:00:29.874-05:00  INFO 3304 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-27T01:00:29.956-05:00  INFO 3304 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-10-27T01:00:29.972-05:00  INFO 3304 --- [main] c.n.cig.cayman.document.Application      : Started Application in 3.183 seconds (process running for 3.714)
+2025-10-27T01:00:44.410-05:00  INFO 3304 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-27T01:00:44.411-05:00  INFO 3304 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-27T01:00:44.412-05:00  INFO 3304 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-10-27T01:00:44.827-05:00 ERROR 3304 --- [http-nio-8081-exec-1] c.n.c.c.d.implementation.DocumentImpl    : ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.
+2025-10-27T01:00:44.827-05:00 ERROR 3304 --- [http-nio-8081-exec-1] c.n.c.c.d.controller.DocumentController  : java.lang.Exception: ISPack.ISUtil.JPISException: GetDocInFile_MT : Lookup Exception.Unable to lookup ClientServiceHandler. Please check your config.

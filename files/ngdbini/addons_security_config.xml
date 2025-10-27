@@ -1,0 +1,32 @@
+<Modules>
+    <!-- Module: OmniDocsRestWS -->
+    <Module>
+        <Name>OmniDocsRestWS</Name>
+        <Headers>
+            <Header>
+                <Name>Access-Control-Allow-Origin</Name>
+                <Value>*</Value>
+            </Header>
+            <Header>
+                <Name>Access-Control-Allow-Methods</Name>
+                <Value>GET,POST,OPTIONS</Value>
+            </Header>
+            <Header>
+                <Name>Access-Control-Allow-Headers</Name>
+                <Value>Content-Type,Token-Id</Value>
+            </Header>
+            <Header>
+                <Name>Access-Control-Allow-Credentials</Name>
+                <Value>false</Value>
+            </Header>
+			<Header>
+                <Name>Content-Security-Policy</Name>
+                <Value>default-src 'self';</Value>
+            </Header>
+			<Header>
+                <Name>X-Content-Type-Options</Name>
+                <Value>nosniff</Value>
+            </Header>
+        </Headers>
+    </Module>
+</Modules>

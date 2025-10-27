@@ -59,7 +59,6 @@ public class DocumentController {
             byte[] decodedBytes = Base64.getDecoder().decode(base64Pdf);
             return ResponseEntity
                     .ok()
-                    .contentType(MediaType.APPLICATION_PDF)
                     .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"document.pdf\"")
                     .body(decodedBytes);
         }catch (Exception e) {

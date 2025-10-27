@@ -90,56 +90,6 @@
             <version>1.2.14</version>
             <systemPath>${lib.path}/log4j.jar</systemPath>
         </dependency>
-
-        <dependency>
-            <groupId>com.newgen</groupId>
-            <artifactId>ISPack</artifactId>
-            <scope>system</scope>
-            <version>1</version>
-            <systemPath>${lib.path}/ISPack.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.newgen</groupId>
-            <artifactId>jdts</artifactId>
-            <scope>system</scope>
-            <version>1</version>
-            <systemPath>${lib.path}/jdts.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.newgen</groupId>
-            <artifactId>nsms</artifactId>
-            <scope>system</scope>
-            <version>1</version>
-            <systemPath>${lib.path}/nsms.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.newgen</groupId>
-            <artifactId>niplj</artifactId>
-            <scope>system</scope>
-            <version>1</version>
-            <systemPath>${lib.path}/NIPLJ.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.newgen</groupId>
-            <artifactId>aws-java-sdk</artifactId>
-            <scope>system</scope>
-            <version>1.11.40</version>
-            <systemPath>${lib.path}/aws-java-sdk.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.newgen</groupId>
-            <artifactId>omnishared</artifactId>
-            <scope>system</scope>
-            <version>1</version>
-            <systemPath>${lib.path}/omnishared.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.newgen</groupId>
-            <artifactId>nglogger</artifactId>
-            <scope>system</scope>
-            <version>1</version>
-            <systemPath>${lib.path}/nglogger.jar</systemPath>
-        </dependency>
 	</dependencies>
 
 	<build>

@@ -1,21 +1,14 @@
 package com.newgen.cig.cayman.document.implementation;
 
-import ISPack.CImageServer;
-import ISPack.CPISDocumentTxn;
-import ISPack.ISUtil.JPISException;
-import Jdts.DataObject.JPDBString;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.newgen.cig.cayman.document.interfaces.DocumentInterface;
 import com.newgen.cig.cayman.document.model.*;
-import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Arrays;
 
 @Service
 public class DocumentImpl implements DocumentInterface {

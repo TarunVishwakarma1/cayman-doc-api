@@ -4,14 +4,16 @@ import ISPack.CImageServer;
 import ISPack.CPISDocumentTxn;
 import ISPack.ISUtil.JPISException;
 import Jdts.DataObject.JPDBString;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.newgen.cig.cayman.document.interfaces.DocumentInterface;
-import com.newgen.cig.cayman.document.model.CabinetProperties;
-import com.newgen.cig.cayman.document.model.ConnectCabinet;
-import com.newgen.cig.cayman.document.model.GlobalSessionService;
+import com.newgen.cig.cayman.document.model.*;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 
@@ -19,6 +21,9 @@ import java.util.Arrays;
 public class DocumentImpl implements DocumentInterface {
 
     private static final Logger LOG = Logger.getLogger(DocumentImpl.class);
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Autowired
     private ConnectCabinet cabinet;
@@ -44,46 +49,59 @@ public class DocumentImpl implements DocumentInterface {
     }
 
     @Override
-    public byte[] docByteArray() throws Exception {
-        String docId = "400";
+    public String fetchDoc(String docIndex) throws Exception {
+        String url = properties.getSite() + properties.getSiteIP() + ":" + properties.getSitePort() + properties.getSiteURI() + properties.getDocumentRequest();
 
-        JPDBString oSiteName = new JPDBString();
-        try(ByteArrayOutputStream out = new ByteArrayOutputStream()){
-            CImageServer.IsDebugLogEnabled = true;
-            CPISDocumentTxn.GetDocInFile_MT(
-                    null,
-                    properties.getSiteIP(),
-                    Short.parseShort(properties.getSitePort()),
-                    properties.getCabinetName(),
-                    Short.parseShort(properties.getSiteId()),
-                    Short.parseShort(properties.getVolumeId()),
-                    Short.parseShort(docId),
-                    "",
-                    out,
-                    oSiteName);
-            byte[] docByte = out.toByteArray();
-            LOG.debug("Document Bytes Generated: "+ Arrays.toString(docByte));
-            return docByte;
-        }catch(Exception | JPISException e){
-            LOG.error(e);
-            throw new Exception(e);
+        // Assuming DocumentRequest.NGOGetDocumentBDO is a static inner class, or you have proper initialization for it
+        DocumentRequest.NGOGetDocumentBDO bdo = new DocumentRequest.NGOGetDocumentBDO();
+        bdo.setCabinetName(properties.getCabinetName());
+        bdo.setUserName("");
+        bdo.setUserPassword("");
+        bdo.setUserDBId(sessionService.getSessionId());
+        bdo.setDocIndex(docIndex);
+        bdo.setAuthToken("");
+        bdo.setAuthTokenType("");
+        bdo.setLocale("en_us");
+
+        LOG.info("//---------- Executing fetchDoc API ----------//");
+        LOG.debug("Executing URL: " + url + ", with body: " + bdo);
+
+        try {
+            ResponseEntity<String> docRes = restTemplate.postForEntity(url, bdo, String.class);
+
+            LOG.info("//----------- Executed Successfully ----------//");
+            LOG.debug("Response Status: " + docRes.getStatusCode() + ", Response Body: " + docRes.getBody());
+
+            String documentResponse = docRes.getBody();
+            LOG.debug("Document Response: " + documentResponse);
+
+            JsonNode jNode = stringToJsonObject(documentResponse);
+
+            LOG.debug("Converted to JsonNode: "+jNode.toString());
+
+            // Check if the response body is not null
+            if (jNode.get("NGOGetDocumentBDOResponse") == null) {
+                LOG.error("Received null response body");
+                throw new Exception("Error: No content received from the server.");
+            }
+
+            String statusCode = jNode.get("NGOGetDocumentBDOResponse").get("statusCode").toString();
+
+            if ("\"0\"".equals(statusCode)) {
+                int length = jNode.get("NGOGetDocumentBDOResponse").get("docContent").toString().length();
+                String ret = jNode.get("NGOGetDocumentBDOResponse").get("docContent").toString().substring(1,length-1);
+                LOG.debug("Document Content Base64: "+ret);
+                return ret;
+            }
+
+            LOG.error("Error Occurred: " + documentResponse);
+            throw new Exception("Error: " + jNode.get("NGOGetDocumentBDOResponse").get("message"));
+
+        } catch (Exception e) {
+            LOG.error("Exception occurred while fetching document: " + e.getMessage(), e);
+            throw new Exception("Failed to fetch document", e);
         }
-    }
 
-    private String getGetDocumentPropertyXml(String cabinetName, String userDbId, String creationDateTime, String docIndex, String dataAlsoFlag, String versionNo) {
-        String inputXml = "<?xml version=\"1.0\"?><NGOGetDocumentProperty_Input><Option>NGOGetDocumentProperty</Option>";
-        inputXml = inputXml + "<CabinetName>" + cabinetName + "</CabinetName>";
-        inputXml = inputXml + "<UserDBId>" + userDbId + "</UserDBId>";
-        if (creationDateTime != null)
-            inputXml = inputXml + "<CurrentDateTime>" + creationDateTime + "</CurrentDateTime>";
-        if (docIndex != null)
-            inputXml = inputXml + "<DocumentIndex>" + docIndex + "</DocumentIndex>";
-        if (versionNo != null)
-            inputXml = inputXml + "<VersionNo>" + versionNo + "</VersionNo>";
-        if (dataAlsoFlag != null)
-            inputXml = inputXml + "<DataAlsoFlag>" + dataAlsoFlag + "</DataAlsoFlag>";
-        inputXml = inputXml + "</NGOGetDocumentProperty_Input>";
-        return inputXml;
     }
 
     private String downloadDocXML(String docIndex){
@@ -99,5 +117,10 @@ public class DocumentImpl implements DocumentInterface {
         LOG.info("Document Download XML: "+ xml);
         LOG.debug("Document Download XML: "+ xml);
         return xml;
+    }
+
+    public JsonNode stringToJsonObject(String jsonString) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readTree(jsonString);
     }
 }

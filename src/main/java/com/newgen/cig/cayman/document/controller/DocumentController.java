@@ -4,14 +4,16 @@ import com.newgen.cig.cayman.document.service.DocumentService;
 import jakarta.annotation.PostConstruct;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
+import java.util.Base64;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -50,17 +52,20 @@ public class DocumentController {
         }
     }
 
-    @GetMapping("/getDoc")
-    public ResponseEntity<?> getDocBytes(){
+    @GetMapping("/fetchDoc/{docIndex}")
+    public ResponseEntity<?> fetchDocument(@PathVariable String docIndex){
         try{
-            byte[] bArr = documentService.getDocBytes();
-            LOG.info(Arrays.toString(bArr));
-            return new ResponseEntity<>("Doc Stream Generated", HttpStatus.OK);
-        } catch (Exception e) {
+            String base64Pdf = documentService.fetchDocument(docIndex);
+            byte[] decodedBytes = Base64.getDecoder().decode(base64Pdf);
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"document.pdf\"")
+                    .body(decodedBytes);
+        }catch (Exception e) {
             LOG.error(e);
-            return new ResponseEntity<>("Something Went Wrong!", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Something went wrong!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
 }

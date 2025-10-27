@@ -20,6 +20,14 @@ public class CabinetProperties {
     private String sitePort;
     @Value("${newgen.cayman.connect.cabinet.siteIP}")
     private String siteIP;
+    @Value("${newgen.cayman.connect.cabinet.site}")
+    private String site;
+    @Value("${newgen.cayman.connect.cabinet.siteURI}")
+    private String siteURI;
+    @Value("${newgen.cayman.connect.cabinet.site.document.request}")
+    private String documentRequest;
+    @Value("${newgen.cayman.connect.cabinet.site.api.request.json}")
+    private String requestJson;
 
     public String getCabinetName() {
 
@@ -76,5 +84,37 @@ public class CabinetProperties {
 
     public void setSiteIP(String siteIP) {
         this.siteIP = siteIP;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
+    }
+
+    public String getSiteURI() {
+        return siteURI;
+    }
+
+    public void setSiteURI(String siteURI) {
+        this.siteURI = siteURI;
+    }
+
+    public String getDocumentRequest() {
+        return documentRequest;
+    }
+
+    public void setDocumentRequest(String documentRequest) {
+        this.documentRequest = documentRequest;
+    }
+
+    public String getRequestJson() {
+        return requestJson;
+    }
+
+    public void setRequestJson(String requestJson) {
+        this.requestJson = requestJson;
     }
 }

@@ -16,7 +16,7 @@ public class DocumentService {
     private DocumentInterface doc;
 
     @Autowired
-    private GlobalSessionService globalSessionService;  // Inject GlobalSessionService
+    private GlobalSessionService globalSessionService;
 
     @Autowired
     private Operations operations;
@@ -29,9 +29,6 @@ public class DocumentService {
         return sessionId;
     }
 
-    public String downloadDocument(String docIndex) throws Exception {
-        return doc.download(docIndex);
-    }
 
     public String fetchDocument(String docIndex) throws Exception {
         return doc.fetchDoc(docIndex);

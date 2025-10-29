@@ -49,8 +49,17 @@ public class DocumentController {
     @GetMapping("/download/{docIndex}")
     public ResponseEntity<?> downloadDocument(@PathVariable String docIndex){
         try{
-            String status = documentService.downloadDocument(docIndex);
-            return new ResponseEntity<>("Document Downloaded Successfully!: "+ status, HttpStatus.OK);
+            String base64Pdf = documentService.fetchDocument(docIndex);
+            byte[] decodedBytes = Base64.getDecoder().decode(base64Pdf);
+            return ResponseEntity
+                    .ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + documentResponse.getDocumentName()+"."+documentResponse.getCreatedByAppName() + "\"")
+                    .contentType(MediaType.valueOf(
+                            DocumentType.fromExtension(
+                                            documentResponse.getCreatedByAppName())
+                                    .getContentType())
+                    )
+                    .body(decodedBytes);
         }catch (Exception e) {
             LOG.error(e);
             return new ResponseEntity<>("Something went wrong!", HttpStatus.INTERNAL_SERVER_ERROR);

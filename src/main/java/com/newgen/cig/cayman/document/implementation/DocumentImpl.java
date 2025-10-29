@@ -39,13 +39,8 @@ public class DocumentImpl implements DocumentInterface {
     }
 
     @Override
-    public String download(String docIndex) throws Exception {
-        String xml = downloadDocXML(docIndex);
-        return operations.executeXML(xml);
-    }
-
-    @Override
     public String fetchDoc(String docIndex) throws Exception {
+        LOG.trace("//---------- Execution FetchDoc Method ----------//");
         String url = properties.getSite() + properties.getSiteIP() + ":" + properties.getSitePort() + properties.getSiteURI() + properties.getDocumentRequest();
 
         // Assuming DocumentRequest.NGOGetDocumentBDO is a static inner class, or you have proper initialization for it
@@ -92,7 +87,7 @@ public class DocumentImpl implements DocumentInterface {
                 docResponse.setDocumentType(documentType);
                 docResponse.setDocumentSize(documentSize);
 
-                LOG.debug("Document Content Base64: "+ret);
+                LOG.debug("Document Response: "+docResponse.toString());
                 return ret;
             }
 

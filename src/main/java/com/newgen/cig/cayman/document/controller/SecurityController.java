@@ -8,8 +8,30 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Security controller exposing cryptographic operations.
+ *
+ * <p>Provides endpoints for key pair generation, AES encryption/decryption,
+ * RSA encryption/decryption, and signing/verification operations.</p>
+ *
+ * <h3>Endpoints:</h3>
+ * <ul>
+ *   <li><b>GET</b> {@code /api/security} – Welcome/health</li>
+ *   <li><b>GET</b> {@code /api/security/keys/rsa} – Generate RSA key pair</li>
+ *   <li><b>GET</b> {@code /api/security/keys/ec} – Generate EC key pair</li>
+ *   <li><b>POST</b> {@code /api/security/aes/encrypt} – AES encrypt text</li>
+ *   <li><b>POST</b> {@code /api/security/aes/decrypt} – AES decrypt text</li>
+ *   <li><b>POST</b> {@code /api/security/rsa/encrypt} – RSA encrypt text</li>
+ *   <li><b>POST</b> {@code /api/security/rsa/decrypt} – RSA decrypt text</li>
+ *   <li><b>POST</b> {@code /api/security/sign} – Sign data</li>
+ *   <li><b>POST</b> {@code /api/security/verify} – Verify signature</li>
+ * </ul>
+ *
+ * @author Tarun Vishwakarma
+ * @since 2025
+ */
 @RestController
-@RequestMapping("/api/v1/security")
+@RequestMapping("/api/security")
 public class SecurityController {
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityController.class);
@@ -28,6 +50,12 @@ public class SecurityController {
         logger.info("SecurityController initialized successfully");
     }
 
+
+    /**
+     * Welcome endpoint for quick reachability checks.
+     *
+     * @return HTML welcome banner
+     */
     @GetMapping()
     public String welcome(){
         logger.trace("Entering welcome() method");
@@ -39,6 +67,12 @@ public class SecurityController {
     }
 
     // --- KeyPair Endpoints ---
+
+    /**
+     * Generates a new RSA key pair.
+     *
+     * @return {@link KeyData} containing base64-encoded public and private keys
+     */
     @GetMapping("/keys/rsa")
     public KeyData getRsaKeys() {
         logger.trace("Entering getRsaKeys() method");
@@ -58,6 +92,12 @@ public class SecurityController {
         }
     }
 
+
+    /**
+     * Generates a new EC (Elliptic Curve) key pair.
+     *
+     * @return {@link KeyData} containing base64-encoded public and private keys
+     */
     @GetMapping("/keys/ec")
     public KeyData getEcKeys() {
         logger.trace("Entering getEcKeys() method");
@@ -78,6 +118,13 @@ public class SecurityController {
     }
 
     // --- AES Endpoints ---
+
+    /**
+     * Encrypts plain text using global AES key.
+     *
+     * @param request input containing the plain text
+     * @return encrypted text wrapped in {@link TextResponse}
+     */
     @PostMapping("/aes/encrypt")
     public TextResponse encryptAes(@RequestBody TextRequest request) {
         logger.trace("Entering encryptAes() method");
@@ -97,6 +144,13 @@ public class SecurityController {
         }
     }
 
+
+    /**
+     * Decrypts cipher text using global AES key.
+     *
+     * @param request input containing the base64 cipher text
+     * @return decrypted text wrapped in {@link TextResponse}
+     */
     @PostMapping("/aes/decrypt")
     public TextResponse decryptAes(@RequestBody TextRequest request) {
         logger.trace("Entering decryptAes() method");
@@ -117,6 +171,13 @@ public class SecurityController {
     }
 
     // --- RSA Endpoints ---
+
+    /**
+     * Encrypts plain text using an RSA public key.
+     *
+     * @param request input containing plain text and public key
+     * @return encrypted text wrapped in {@link TextResponse}
+     */
     @PostMapping("/rsa/encrypt")
     public TextResponse encryptRsa(@RequestBody RsaEncryptionRequest request) {
         logger.trace("Entering encryptRsa() method");
@@ -138,6 +199,13 @@ public class SecurityController {
         }
     }
 
+
+    /**
+     * Decrypts cipher text using an RSA private key.
+     *
+     * @param request input containing cipher text and private key
+     * @return decrypted text wrapped in {@link TextResponse}
+     */
     @PostMapping("/rsa/decrypt")
     public TextResponse decryptRsa(@RequestBody RsaDecryptionRequest request) {
         logger.trace("Entering decryptRsa() method");
@@ -159,6 +227,13 @@ public class SecurityController {
     }
 
     // --- Signing & Verification Endpoints ---
+
+    /**
+     * Signs input data using a provided private key.
+     *
+     * @param request input containing data and private key
+     * @return {@link SignatureResponse} containing the signature
+     */
     @PostMapping("/sign")
     public SignatureResponse sign(@RequestBody SignatureRequest request) {
         logger.trace("Entering sign() method");
@@ -180,6 +255,13 @@ public class SecurityController {
         }
     }
 
+
+    /**
+     * Verifies a signature for the supplied data using a public key.
+     *
+     * @param request input containing data, signature, and public key
+     * @return {@link VerificationResponse} indicating verification result
+     */
     @PostMapping("/verify")
     public VerificationResponse verify(@RequestBody VerificationRequest request) {
         logger.trace("Entering verify() method");

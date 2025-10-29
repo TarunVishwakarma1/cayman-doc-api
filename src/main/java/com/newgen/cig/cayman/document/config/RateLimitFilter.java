@@ -14,12 +14,56 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Servlet filter that implements rate limiting using the Token Bucket algorithm.
+ * 
+ * <p>This filter protects the API from abuse by limiting the number of requests
+ * that can be made from a single IP address within a specified time window.</p>
+ * 
+ * <h3>Algorithm:</h3>
+ * <p>Uses the Token Bucket algorithm where:</p>
+ * <ul>
+ *   <li>Each IP address gets a bucket with a fixed capacity of tokens</li>
+ *   <li>Each request consumes one token</li>
+ *   <li>Tokens refill at a fixed rate (capacity per duration)</li>
+ *   <li>Requests are rejected when the bucket is empty</li>
+ * </ul>
+ * 
+ * <h3>Configuration:</h3>
+ * <pre>
+ * # application.yml
+ * rate:
+ *   limit:
+ *     capacity: 100           # Maximum requests per time window
+ *     duration:
+ *       minutes: 1            # Time window duration
+ * </pre>
+ * 
+ * <h3>Features:</h3>
+ * <ul>
+ *   <li>Per-IP address rate limiting</li>
+ *   <li>Support for X-Forwarded-For header (proxy-aware)</li>
+ *   <li>Automatic cache eviction after 10 minutes of inactivity</li>
+ *   <li>Maximum 10,000 IP addresses tracked simultaneously</li>
+ * </ul>
+ * 
+ * <h3>HTTP Status:</h3>
+ * <p>When rate limit is exceeded, throws {@link TooManyRequestsException}
+ * which results in HTTP 429 (Too Many Requests) response.</p>
+ * 
+ * @author Tarun Vishwakarma
+ * @version 1.0
+ * @since 2025
+ * @see TooManyRequestsException
+ * @see TokenBucket
+ */
 @Component
 @Order(1)
 public class RateLimitFilter implements Filter {
 
     private static final Logger logger = LoggerFactory.getLogger(RateLimitFilter.class);
     
+    /** Maximum number of requests allowed per time window (configurable) */
     @Value("${rate.limit.capacity:100}")
     private int rateLimitCapacity;
     
@@ -83,13 +127,39 @@ public class RateLimitFilter implements Filter {
     }
 
     /**
-     * Simple Token Bucket implementation for rate limiting
+     * Simple Token Bucket implementation for rate limiting.
+     * 
+     * <p>The Token Bucket algorithm allows for burst traffic while maintaining
+     * an average rate limit over time.</p>
+     * 
+     * <h3>How It Works:</h3>
+     * <ul>
+     *   <li>Bucket starts with maximum capacity of tokens</li>
+     *   <li>Each request consumes one token</li>
+     *   <li>Tokens refill automatically based on time passed</li>
+     *   <li>Bucket capacity is never exceeded</li>
+     * </ul>
+     * 
+     * <p>This implementation is thread-safe using synchronized methods.</p>
+     * 
+     * @author Tarun Vishwakarma
+     * @version 1.0
+     * @since 2025
      */
     private static class TokenBucket {
+        /** Maximum number of tokens the bucket can hold */
         private final int capacity;
+        
+        /** Time interval (in nanoseconds) for refilling tokens */
         private final long refillIntervalNanos;
+        
+        /** Number of tokens added during each refill cycle */
         private final long tokensPerRefill;
+        
+        /** Current number of available tokens */
         private long availableTokens;
+        
+        /** Timestamp of the last refill operation */
         private long lastRefillTimestamp;
 
         public TokenBucket(int capacity, int durationMinutes) {

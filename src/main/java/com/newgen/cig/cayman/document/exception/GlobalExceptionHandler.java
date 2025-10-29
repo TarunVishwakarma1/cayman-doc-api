@@ -23,6 +23,30 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Centralized exception handling for all REST controllers.
+ *
+ * <p>Converts thrown exceptions into consistent {@code ErrorResponse}
+ * objects with appropriate HTTP status codes. Handles custom
+ * {@link BaseException} types as well as common Spring MVC and
+ * HTTP client/server exceptions.</p>
+ *
+ * <h3>Handled Categories:</h3>
+ * <ul>
+ *   <li>Domain exceptions: {@link BaseException} and subclasses</li>
+ *   <li>Validation errors: {@link org.springframework.web.bind.MethodArgumentNotValidException}</li>
+ *   <li>Missing/invalid parameters and types</li>
+ *   <li>Malformed JSON requests</li>
+ *   <li>404 No handler and method not allowed</li>
+ *   <li>External service 4xx/5xx and connectivity issues</li>
+ *   <li>Generic catch-all for unexpected exceptions</li>
+ * </ul>
+ *
+ * <p>All responses include HTTP status, error code, message, details, and path.</p>
+ *
+ * @author Tarun Vishwakarma
+ * @since 2025
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

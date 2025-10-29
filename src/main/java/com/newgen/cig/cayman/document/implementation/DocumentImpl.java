@@ -12,6 +12,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * OmniDocs integration implementation for {@link DocumentInterface}.
+ *
+ * <p>Manages cabinet connectivity and document retrieval via REST
+ * and parses responses to populate {@link com.newgen.cig.cayman.document.model.dao.DocumentResponse}.</p>
+ *
+ * <h3>Responsibilities:</h3>
+ * <ul>
+ *   <li>Establish a session with the OmniDocs cabinet</li>
+ *   <li>Call the document fetch API and extract content/metadata</li>
+ *   <li>Map service errors to domain exceptions</li>
+ * </ul>
+ *
+ * @author Tarun Vishwakarma
+ * @since 2025
+ */
 @Service
 public class DocumentImpl implements DocumentInterface {
 
@@ -33,7 +49,14 @@ public class DocumentImpl implements DocumentInterface {
     private GlobalSessionService sessionService;
 
     @Override
-    public String connectCabinet() {
+    
+        /**
+         * Connects to the OmniDocs cabinet and returns the raw XML response.
+         *
+         * @return XML response from cabinet connection
+         * @throws CabinetConnectionException on connectivity or response format issues
+         */
+        public String connectCabinet() {
         logger.trace("Entering connectCabinet() method");
         logger.info("Connecting to cabinet");
         try {
@@ -58,6 +81,16 @@ public class DocumentImpl implements DocumentInterface {
     }
 
     @Override
+     /**
+         * Fetches a document as base64 string using the given document index.
+         *
+         * @param docIndex unique identifier of the document in OmniDocs
+         * @return base64 encoded document content
+         * @throws InvalidParameterException when docIndex is invalid
+         * @throws SessionExpiredException when session is missing/expired
+         * @throws DocumentNotFoundException when document cannot be found
+         * @throws ExternalServiceException for upstream errors or bad responses
+         */
     public String fetchDoc(String docIndex) {
         logger.trace("Entering fetchDoc() method with docIndex: {}", docIndex);
         logger.info("Fetching document. DocIndex: {}", docIndex);
@@ -186,6 +219,13 @@ public class DocumentImpl implements DocumentInterface {
         }
     }
 
+     /**
+         * Parses a JSON string into {@link JsonNode}.
+         *
+         * @param jsonString raw JSON string
+         * @return parsed JsonNode
+         * @throws JsonParsingException on invalid JSON
+         */
     public JsonNode stringToJsonObject(String jsonString) {
         logger.trace("Entering stringToJsonObject() method. JSON string length: {}", jsonString != null ? jsonString.length() : 0);
         
@@ -209,6 +249,12 @@ public class DocumentImpl implements DocumentInterface {
         }
     }
 
+     /**
+         * Trims leading and trailing quotes produced by JSON node toString().
+         *
+         * @param str string with surrounding quotes
+         * @return string without the first and last characters
+    */
     private String trimString(String str){
         logger.trace("Entering trimString() method. Original string length: {}", str != null ? str.length() : 0);
         if (str == null || str.length() < 2) {

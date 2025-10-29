@@ -7,9 +7,25 @@ import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
 
+    /**
+     * Strongly-typed container for OmniDocs cabinet configuration.
+     *
+     * <p>Values are injected from {@code application.yml} (some may be encrypted
+     * and decrypted at startup). Provides convenient getters used by
+     * services and integration classes.</p>
+     *
+     * <h3>Key Properties:</h3>
+     * <ul>
+     *   <li>Credentials and cabinet name</li>
+     *   <li>JTS IP/Port for DMS Call Broker</li>
+     *   <li>REST endpoint base URL components for document APIs</li>
+     * </ul>
+     *
+     * @author Tarun Vishwakarma
+     * @since 2025
+     */
 @Component
 public class CabinetProperties {
-
     private static final Logger logger = LoggerFactory.getLogger(CabinetProperties.class);
 
     @Value("${newgen.cayman.connect.cabinet.username}")
@@ -33,7 +49,7 @@ public class CabinetProperties {
     private String sitePort;
     @Value("${newgen.cayman.connect.cabinet.siteIP}")
     private String siteIP;
-    @Value("${newgen.cayman.connect.cabinet.site}")
+    @Value("${newgen.cayman.connect.cabinet.siteHeader}")
     private String site;
     @Value("${newgen.cayman.connect.cabinet.siteURI}")
     private String siteURI;

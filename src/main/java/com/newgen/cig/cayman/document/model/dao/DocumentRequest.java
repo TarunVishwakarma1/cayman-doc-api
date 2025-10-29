@@ -4,6 +4,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Request payload model for the OmniDocs document fetch API.
+ *
+ * <p>Wraps {@link NGOGetDocumentBDO} which mirrors the expected request body.</p>
+ *
+ * @author Tarun Vishwakarma
+ * @since 2025
+ */
 public class DocumentRequest {
 
     private static final Logger logger = LoggerFactory.getLogger(DocumentRequest.class);
@@ -24,6 +32,9 @@ public class DocumentRequest {
     }
 
     // Inner class for NGOGetDocumentBDO
+    /**
+     * Business Data Object describing the payload for document retrieval.
+     */
     public static class NGOGetDocumentBDO {
 
         private static final Logger logger = LoggerFactory.getLogger(NGOGetDocumentBDO.class);

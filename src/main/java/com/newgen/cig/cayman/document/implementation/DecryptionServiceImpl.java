@@ -19,6 +19,23 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.util.Arrays;
 
+/**
+ * Default implementation of {@link DecryptionService} backed by
+ * AES-GCM for symmetric decryption and RSA for asymmetric decryption.
+ *
+ * <p>The global AES key is derived from the property
+ * {@code my.security.aes-secret} using SHA-256 to obtain a 256-bit key.</p>
+ *
+ * <h3>Responsibilities:</h3>
+ * <ul>
+ *   <li>Decrypt cipher text with a global AES key</li>
+ *   <li>Decrypt cipher text with a provided RSA private key</li>
+ *   <li>Decrypt arbitrary objects serialized as JSON</li>
+ * </ul>
+ *
+ * @author Tarun Vishwakarma
+ * @since 2025
+ */
 @Service
 public class DecryptionServiceImpl implements DecryptionService {
 

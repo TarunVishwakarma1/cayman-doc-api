@@ -12,6 +12,15 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
+/**
+ * Utilities for asymmetric key generation, encoding, and signatures.
+ *
+ * <p>Supports RSA and EC key pairs, ECDSA signatures, and Base64
+ * encoding/decoding of keys for transport.</p>
+ *
+ * @author Tarun Vishwakarma
+ * @since 2025
+ */
 public final class KeyPair {
 
     private static final Logger logger = LoggerFactory.getLogger(KeyPair.class);

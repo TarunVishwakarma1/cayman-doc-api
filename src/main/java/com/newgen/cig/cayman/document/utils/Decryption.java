@@ -14,6 +14,21 @@ import java.nio.charset.StandardCharsets;
 import java.security.PrivateKey;
 import java.util.Base64;
 
+/**
+ * Cryptographic helper utilities for decryption operations.
+ *
+ * <p>Provides AES-GCM and RSA decryption helpers, including convenience
+ * methods for decrypting plain text and serialized objects.</p>
+ *
+ * <h3>Supported Algorithms:</h3>
+ * <ul>
+ *   <li>AES/GCM/NoPadding</li>
+ *   <li>RSA/ECB/PKCS1Padding</li>
+ * </ul>
+ *
+ * @author Tarun Vishwakarma
+ * @since 2025
+ */
 public final class Decryption {
 
     private static final Logger logger = LoggerFactory.getLogger(Decryption.class);

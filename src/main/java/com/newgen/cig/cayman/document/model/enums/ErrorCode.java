@@ -3,6 +3,12 @@ package com.newgen.cig.cayman.document.model.enums;
 
 import org.springframework.http.HttpStatus;
 
+/**
+ * Canonical error codes with default messages and HTTP statuses.
+ *
+ * <p>Each code is mapped to an {@link org.springframework.http.HttpStatus}
+ * for consistent API responses.</p>
+ */
 public enum ErrorCode {
     // 4xx Client Errors
     BAD_REQUEST("ERR_001", "Bad request", HttpStatus.BAD_REQUEST),

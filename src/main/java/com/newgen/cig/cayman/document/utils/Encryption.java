@@ -15,6 +15,27 @@ import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.util.Base64;
 
+/**
+ * Cryptographic helper utilities for encryption operations.
+ *
+ * <p>Provides AES-GCM and RSA encryption helpers, including convenience
+ * methods for encrypting plain text and serialized objects.</p>
+ *
+ * <h3>Supported Algorithms:</h3>
+ * <ul>
+ *   <li>AES/GCM/NoPadding</li>
+ *   <li>RSA/ECB/PKCS1Padding</li>
+ * </ul>
+ *
+ * <h3>Notes:</h3>
+ * <ul>
+ *   <li>RSA has size limitations for input data.</li>
+ *   <li>AES-GCM uses random IV and prepends it to ciphertext.</li>
+ * </ul>
+ *
+ * @author Tarun Vishwakarma
+ * @since 2025
+ */
 public final class Encryption {
 
     private static final Logger logger = LoggerFactory.getLogger(Encryption.class);

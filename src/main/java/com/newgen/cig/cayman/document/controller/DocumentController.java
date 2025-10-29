@@ -16,6 +16,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * REST controller exposing document-related endpoints.
+ *
+ * <p>Provides health check, session management, and document retrieval endpoints
+ * for clients interacting with the Cayman Document API.</p>
+ *
+ * <h3>Endpoints:</h3>
+ * <ul>
+ *   <li><b>GET</b> {@code /api/v1} – Health check</li>
+ *   <li><b>GET</b> {@code /api/v1/sessionId} – Get OmniDocs session id</li>
+ *   <li><b>GET</b> {@code /api/v1/download/{docIndex}} – Download document as attachment</li>
+ *   <li><b>GET</b> {@code /api/v1/fetchDoc/{base64}/{docIndex}} – Fetch document inline (base64 or bytes)</li>
+ * </ul>
+ *
+ * @author Tarun Vishwakarma
+ * @since 2025
+ */
 @RestController
 @RequestMapping("/api/v1")
 public class DocumentController {
@@ -28,6 +45,12 @@ public class DocumentController {
     @Autowired
     private DocumentService documentService;
 
+
+    /**
+     * Simple health check endpoint.
+     *
+     * @return HTML greeting indicating the API is reachable
+     */
     @GetMapping("")
     public String hello(){
         logger.trace("Entering hello() method");
@@ -38,6 +61,12 @@ public class DocumentController {
         return response;
     }
 
+
+    /**
+     * Retrieves and returns a new session id from OmniDocs.
+     *
+     * @return {@link ResponseEntity} containing the session id as plain text
+     */
     @GetMapping("/sessionId")
     public ResponseEntity<?> sessionId() {
         logger.trace("Entering sessionId() method");
@@ -50,6 +79,14 @@ public class DocumentController {
         return ResponseEntity.ok(sessionId);
     }
 
+
+    /**
+     * Downloads a document from OmniDocs as a file attachment.
+     *
+     * @param docIndex unique document identifier in OmniDocs
+     * @return file download response with appropriate content type
+     * @throws InvalidParameterException if parameters are invalid or content is empty
+     */
     @GetMapping("/download/{docIndex}")
     public ResponseEntity<?> downloadDocument(@PathVariable String docIndex){
         logger.trace("Entering downloadDocument() method with docIndex: {}", docIndex);
@@ -93,6 +130,17 @@ public class DocumentController {
                 .body(body);
     }
 
+
+    /**
+     * Fetches a document as inline content. When path variable {@code base64}
+     * equals {@code base64}, returns base64 string; otherwise returns raw bytes.
+     *
+     * @param base64 either literal "base64" or any other value for bytes
+     * @param docIndex unique document identifier in OmniDocs
+     * @return inline response with document content
+     * @throws MissingParameterException when required parameters are missing
+     * @throws InvalidParameterException when parameters are invalid
+     */
     @GetMapping("/fetchDoc/{base64}/{docIndex}")
     public ResponseEntity<?> fetchDocument(@PathVariable String base64, @PathVariable String docIndex){
         logger.trace("Entering fetchDocument() method with base64: {}, docIndex: {}", base64, docIndex);

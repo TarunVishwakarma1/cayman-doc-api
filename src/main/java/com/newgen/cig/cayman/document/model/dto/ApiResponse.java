@@ -5,6 +5,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDateTime;
 
+/**
+ * Standard API response wrapper used by controllers.
+ *
+ * <p>Encapsulates timestamp, status, message, data payload and error details
+ * for consistent client responses.</p>
+ *
+ * @param <T> type of the data payload
+ * @author Tarun Vishwakarma
+ * @since 2025
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
     
@@ -25,14 +35,35 @@ public class ApiResponse<T> {
         this.data = data;
     }
 
+    /**
+     * Creates a 200 OK success response with default message.
+     *
+     * @param data payload to return
+     * @return success response
+     */
     public static <T> ApiResponse<T> success(T data) {
         return new ApiResponse<>(200, "Success", data);
     }
 
+    /**
+     * Creates a 200 OK success response with custom message.
+     *
+     * @param message custom success message
+     * @param data payload to return
+     * @return success response
+     */
     public static <T> ApiResponse<T> success(String message, T data) {
         return new ApiResponse<>(200, message, data);
     }
 
+    /**
+     * Creates an error response with status, message and error details.
+     *
+     * @param status HTTP status code
+     * @param message error message
+     * @param error structured error details
+     * @return error response
+     */
     public static <T> ApiResponse<T> error(int status, String message, ErrorResponse error) {
         ApiResponse<T> response = new ApiResponse<>();
         response.setStatus(status);

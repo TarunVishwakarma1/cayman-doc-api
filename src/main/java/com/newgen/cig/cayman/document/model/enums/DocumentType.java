@@ -6,6 +6,12 @@ import org.springframework.http.MediaType;
 
 import java.util.Arrays;
 
+/**
+ * Supported document types and their corresponding HTTP content types.
+ *
+ * <p>Provides a safe mapping from file extension to {@link org.springframework.http.MediaType}
+ * for response headers.</p>
+ */
 public enum DocumentType {
 
     DOCX("docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"),
@@ -40,6 +46,13 @@ public enum DocumentType {
         return contentType;
     }
 
+    /**
+     * Resolves {@link DocumentType} from a file extension.
+     *
+     * @param extension file extension without dot (e.g., "pdf")
+     * @return matching DocumentType
+     * @throws IllegalArgumentException if extension is unsupported or blank
+     */
     public static DocumentType fromExtension(String extension){
         logger.trace("Looking up DocumentType for extension: {}", extension);
         

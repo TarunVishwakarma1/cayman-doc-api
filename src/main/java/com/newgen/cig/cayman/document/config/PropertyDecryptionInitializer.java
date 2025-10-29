@@ -19,13 +19,72 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Application context initializer that decrypts encrypted properties during application startup.
+ * 
+ * <p>This initializer scans all application properties looking for values encrypted with the
+ * pattern {@code ENC(encryptedValue)} and decrypts them using AES-256 encryption before the
+ * application context is fully initialized.</p>
+ * 
+ * <h3>How It Works:</h3>
+ * <ol>
+ *   <li>Retrieves the AES secret key from {@code my.security.aes-secret} property</li>
+ *   <li>Scans all properties with prefix {@code newgen.cayman.connect.cabinet.}</li>
+ *   <li>Identifies encrypted values matching the {@code ENC(...)} pattern</li>
+ *   <li>Decrypts the values using AES-256 GCM mode</li>
+ *   <li>Replaces encrypted properties with decrypted values</li>
+ * </ol>
+ * 
+ * <h3>Configuration Example:</h3>
+ * <pre>
+ * # application.yml
+ * my:
+ *   security:
+ *     aes-secret: your-32-character-secret-key
+ * 
+ * newgen:
+ *   cayman:
+ *     connect:
+ *       cabinet:
+ *         username: ENC(base64EncodedEncryptedValue)
+ *         password: ENC(base64EncodedEncryptedValue)
+ * </pre>
+ * 
+ * <h3>Security Notes:</h3>
+ * <ul>
+ *   <li>The AES secret should be stored securely and not committed to version control</li>
+ *   <li>Uses SHA-256 hash of the secret to create a 256-bit AES key</li>
+ *   <li>Decrypted values are only stored in memory, never written to disk</li>
+ * </ul>
+ * 
+ * @author Tarun Vishwakarma
+ * @version 1.0
+ * @since 2025
+ * @see Decryption
+ * @see ApplicationContextInitializer
+ */
 public class PropertyDecryptionInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
     private static final Logger logger = LoggerFactory.getLogger(PropertyDecryptionInitializer.class);
+    
+    /** Regular expression pattern to identify encrypted values: ENC(value) */
     private static final Pattern ENCRYPTED_VALUE_PATTERN = Pattern.compile("^ENC\\((.+)\\)$");
+    
+    /** Prefix for cabinet-related properties that should be checked for encryption */
     private static final String CABINET_PROPERTY_PREFIX = "newgen.cayman.connect.cabinet.";
+    
+    /** Property key for the AES encryption secret */
     private static final String AES_SECRET_PROPERTY = "my.security.aes-secret";
 
+    /**
+     * Initializes the application context by decrypting encrypted property values.
+     * 
+     * <p>This method is called before the application context is refreshed, allowing
+     * encrypted properties to be decrypted before any beans are created.</p>
+     * 
+     * @param applicationContext the application context being initialized
+     * @throws RuntimeException if AES key creation fails or property decryption fails
+     */
     @Override
     public void initialize(ConfigurableApplicationContext applicationContext) {
         logger.info("========================================");
@@ -147,6 +206,12 @@ public class PropertyDecryptionInitializer implements ApplicationContextInitiali
     
     /**
      * Extracts the string value from either a plain String or an OriginTrackedValue wrapper.
+     * 
+     * <p>Spring Boot wraps property values in {@link OriginTrackedValue} objects to track
+     * where they came from. This method unwraps these objects to get the actual string value.</p>
+     * 
+     * @param value the property value, which may be a String or OriginTrackedValue
+     * @return the extracted string value, or null if the value cannot be converted
      */
     private String extractStringValue(Object value) {
         if (value == null) {
@@ -170,6 +235,16 @@ public class PropertyDecryptionInitializer implements ApplicationContextInitiali
         return value.toString();
     }
     
+    /**
+     * Creates an AES SecretKey from the provided secret string.
+     * 
+     * <p>Uses SHA-256 hashing to convert the secret string into a 256-bit key
+     * suitable for AES-256 encryption.</p>
+     * 
+     * @param secret the secret string to convert into an AES key
+     * @return a SecretKey suitable for AES encryption
+     * @throws RuntimeException if SHA-256 algorithm is not available
+     */
     private SecretKey createAesKey(String secret) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");

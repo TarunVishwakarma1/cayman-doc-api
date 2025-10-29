@@ -10,14 +10,38 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class Operations {
+    /**
+     * Helper service for XML-related operations with Newgen DMS APIs.
+     *
+     * <p>Provides utilities to extract values from XML responses and to
+     * execute XML against the DMS Call Broker using configured JTS endpoints.</p>
+     *
+     * <h3>Responsibilities:</h3>
+     * <ul>
+     *   <li>Read values from XML using DMSXmlResponse</li>
+     *   <li>Execute XML commands against DMSCallBroker</li>
+     *   <li>Validate configuration and map common errors</li>
+     * </ul>
+     *
+     * @author Tarun Vishwakarma
+     * @since 2025
+     */
+    @Service
+    public class Operations {
 
     private static final Logger logger = LoggerFactory.getLogger(Operations.class);
 
     @Autowired
     private CabinetProperties cabinet;
 
+    /**
+     * Extracts a value from XML by key.
+     *
+     * @param xml raw XML content
+     * @param key target node key
+     * @return extracted value
+     * @throws XmlParsingException on invalid XML or missing key
+     */
     public String getValueFromXML(String xml, String key){
         logger.trace("Entering getValueFromXML() method. Key: {}", key);
         logger.debug("Parameters provided - XML length: {}, Key: {}", xml != null ? xml.length() : 0, key);
@@ -49,6 +73,14 @@ public class Operations {
         }
     }
 
+    /**
+     * Executes XML via DMS Call Broker using configured JTS IP/Port.
+     *
+     * @param xml request XML to send
+     * @return response XML from DMS
+     * @throws CabinetConnectionException on connectivity/config errors
+     * @throws XmlParsingException when XML input is invalid
+     */
     public String executeXML(String xml) {
         logger.trace("Entering executeXML() method");
         logger.info("Executing XML via DMS Call Broker");

@@ -10,6 +10,20 @@ import org.springframework.stereotype.Service;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
+/**
+ * Implementation of {@link KeyPairService} providing RSA/EC key pair
+ * generation and ECDSA signature utilities.
+ *
+ * <h3>Responsibilities:</h3>
+ * <ul>
+ *   <li>Generate RSA and EC key pairs</li>
+ *   <li>Sign data with EC private key</li>
+ *   <li>Verify signatures with EC public key</li>
+ * </ul>
+ *
+ * @author Tarun Vishwakarma
+ * @since 2025
+ */
 @Service
 public class KeyPairServiceImpl implements KeyPairService {
 

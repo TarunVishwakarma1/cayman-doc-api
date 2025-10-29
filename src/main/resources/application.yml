@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: caymen-document-api
+  profile:
+    active: default
+
+server:
+  port: 8081
+
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    root: INFO
+    com.newgen.cig.cayman: INFO
+    org.springframework: INFO
+    org.springframework.web: INFO
+
+newgen:
+  cayman:
+    connect:
+      cabinet:
+        username: ENC(z6idj4u7Bfoaftw6QFZpweVVPvfaOBCQ8Jpv8DkMRIMmFzc=)
+        password: ENC(hjOpOkt6fChqyRC8WPtO9SbqCYVRYvElyXfGsfp9tAcU1rPd)
+        cabinetName: worcuat
+        siteHeader: http://
+        siteIP: 127.0.0.1
+        sitePort: 8080
+        siteURI: /OmniDocsRestWS/rest/services
+        site:
+          document:
+            request: /getDocumentJSON
+          api:
+            request:
+              json: /executeAPIJSON
+        jtsIP: 127.0.0.1
+        jtsPort: 3333
+        mainGroupIndex: 0
+        userExists: N
+        siteId: 1
+        volumeId: 1
+
+rate:
+  limit:
+    capacity: 100
+    duration:
+      minutes: 1
+
+my:
+  security:
+    aes-secret: b229ad1a61e8a680a31a646cd634dbb1

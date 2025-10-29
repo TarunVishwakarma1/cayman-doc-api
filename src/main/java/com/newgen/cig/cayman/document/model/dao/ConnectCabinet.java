@@ -9,9 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+    /**
+     * Manages establishing and closing sessions with the OmniDocs cabinet.
+     *
+     * <p>Builds XML for connect/disconnect and delegates execution to
+     * {@link com.newgen.cig.cayman.document.implementation.Operations}.</p>
+     *
+     * <h3>Responsibilities:</h3>
+     * <ul>
+     *   <li>Generate connect/disconnect XML</li>
+     *   <li>Execute XML and store session id in {@link GlobalSessionService}</li>
+     * </ul>
+     *
+     * @author Tarun Vishwakarma
+     * @since 2025
+     */
 @Component
 public class ConnectCabinet {
-
     private static final Logger logger = LoggerFactory.getLogger(ConnectCabinet.class);
 
     @Autowired
@@ -88,6 +102,12 @@ public class ConnectCabinet {
                 cabinetName, jtsIP, jtsPort, username);
     }
 
+    /**
+     * Connects to the cabinet and returns raw XML response.
+     *
+     * @return XML response from connect operation
+     * @throws com.newgen.cig.cayman.document.exception.CabinetConnectionException on errors
+     */
     public String connect() {
         logger.trace("Entering connect() method");
         logger.info("Connecting to cabinet. CabinetName: {}, Username: {}, JTS IP: {}, JTS Port: {}", 
@@ -128,6 +148,9 @@ public class ConnectCabinet {
         }
     }
 
+    /**
+     * Disconnects the current session from the cabinet.
+     */
     public void disconnect() {
         logger.trace("Entering disconnect() method");
         logger.info("Disconnecting from cabinet. CabinetName: {}, SessionId: {}", cabinetName, 

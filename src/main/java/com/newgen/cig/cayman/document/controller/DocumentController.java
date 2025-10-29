@@ -64,9 +64,9 @@ public class DocumentController {
             byte[] decodedBytes = Base64.getDecoder().decode(base64Pdf);
             return ResponseEntity
                     .ok()
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + documentResponse.getDocumentName()+"."+documentResponse.getCreatedByAppName() + "\"")
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + documentResponse.getDocumentName()+"."+documentResponse.getCreatedByAppName() + "\"")
                     .contentType(MediaType.valueOf(
-                            DocumentType.valueOf(
+                            DocumentType.fromExtension(
                                     documentResponse.getCreatedByAppName())
                                     .getContentType())
                     )

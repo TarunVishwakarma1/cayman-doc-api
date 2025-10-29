@@ -66,11 +66,8 @@ public class DocumentImpl implements DocumentInterface {
             ResponseEntity<String> docRes = restTemplate.postForEntity(url, bdo, String.class);
 
             LOG.info("//----------- Executed Successfully ----------//");
-            LOG.debug("Response Status: " + docRes.getStatusCode() + ", Response Body: " + docRes.getBody());
             String documentResponse = docRes.getBody();
             JsonNode jNode = stringToJsonObject(documentResponse);
-
-            LOG.debug("Converted to JsonNode: "+jNode.toString());
 
             if (jNode.get("NGOGetDocumentBDOResponse") == null) {
                 LOG.error("Received null response body");

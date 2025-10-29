@@ -7,6 +7,8 @@ import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
+
 @Service
 public class DocumentService {
 
@@ -30,7 +32,12 @@ public class DocumentService {
     }
 
 
-    public String fetchDocument(String docIndex) throws Exception {
+    public String fetchDocumentBase64(String docIndex) throws Exception {
         return doc.fetchDoc(docIndex);
+    }
+
+    public byte[] fetchDocBytes(String docIndex) throws Exception {
+        String base64Pdf = doc.fetchDoc(docIndex);
+        return Base64.getDecoder().decode(base64Pdf);
     }
 }

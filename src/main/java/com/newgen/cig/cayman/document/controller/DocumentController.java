@@ -35,7 +35,6 @@ public class DocumentController {
     }
 
     @GetMapping("/sessionId")
-    @PostConstruct
     public ResponseEntity<?> sessionId() {
         try{
             String sessionId = documentService.getSessionId();
@@ -49,8 +48,7 @@ public class DocumentController {
     @GetMapping("/download/{docIndex}")
     public ResponseEntity<?> downloadDocument(@PathVariable String docIndex){
         try{
-            String base64Pdf = documentService.fetchDocument(docIndex);
-            byte[] decodedBytes = Base64.getDecoder().decode(base64Pdf);
+            byte[] body = documentService.fetchDocBytes(docIndex);
             return ResponseEntity
                     .ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + documentResponse.getDocumentName()+"."+documentResponse.getCreatedByAppName() + "\"")
@@ -59,18 +57,25 @@ public class DocumentController {
                                             documentResponse.getCreatedByAppName())
                                     .getContentType())
                     )
-                    .body(decodedBytes);
+                    .body(body);
         }catch (Exception e) {
             LOG.error(e);
             return new ResponseEntity<>("Something went wrong!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/fetchDoc/{docIndex}")
-    public ResponseEntity<?> fetchDocument(@PathVariable String docIndex){
+    @GetMapping("/fetchDoc/{base64}/{docIndex}")
+    public ResponseEntity<?> fetchDocument(@PathVariable String base64, @PathVariable String docIndex){
+        Object body = new Object();
         try{
-            String base64Pdf = documentService.fetchDocument(docIndex);
-            byte[] decodedBytes = Base64.getDecoder().decode(base64Pdf);
+
+
+
+            if("base64".equals(base64)) {
+                body = documentService.fetchDocumentBase64(docIndex);
+            }else{
+                body = documentService.fetchDocBytes(docIndex);
+            }
             return ResponseEntity
                     .ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + documentResponse.getDocumentName()+"."+documentResponse.getCreatedByAppName() + "\"")
@@ -79,7 +84,7 @@ public class DocumentController {
                                     documentResponse.getCreatedByAppName())
                                     .getContentType())
                     )
-                    .body(decodedBytes);
+                    .body(body);
         }catch (Exception e) {
             LOG.error(e);
             return new ResponseEntity<>("Something went wrong!", HttpStatus.INTERNAL_SERVER_ERROR);

@@ -1,4 +1,4 @@
-package com.newgen.cig.cayman.document.model;
+package com.newgen.cig.cayman.document.model.dao;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

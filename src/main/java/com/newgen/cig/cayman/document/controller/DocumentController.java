@@ -1,5 +1,7 @@
 package com.newgen.cig.cayman.document.controller;
 
+import com.newgen.cig.cayman.document.model.dao.DocumentResponse;
+import com.newgen.cig.cayman.document.model.enums.DocumentType;
 import com.newgen.cig.cayman.document.service.DocumentService;
 import jakarta.annotation.PostConstruct;
 import org.jboss.logging.Logger;
@@ -20,6 +22,9 @@ import java.util.Base64;
 public class DocumentController {
 
     private static final Logger LOG = Logger.getLogger(DocumentController.class);
+
+    @Autowired
+    private DocumentResponse documentResponse;
 
     @Autowired
     private DocumentService documentService;
@@ -59,7 +64,12 @@ public class DocumentController {
             byte[] decodedBytes = Base64.getDecoder().decode(base64Pdf);
             return ResponseEntity
                     .ok()
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"document.pdf\"")
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + documentResponse.getDocumentName()+"."+documentResponse.getCreatedByAppName() + "\"")
+                    .contentType(MediaType.valueOf(
+                            DocumentType.valueOf(
+                                    documentResponse.getCreatedByAppName())
+                                    .getContentType())
+                    )
                     .body(decodedBytes);
         }catch (Exception e) {
             LOG.error(e);

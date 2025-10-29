@@ -1,4 +1,4 @@
-package com.newgen.cig.cayman.document.model;
+package com.newgen.cig.cayman.document.model.dao;
 
 import org.springframework.stereotype.Service;
 

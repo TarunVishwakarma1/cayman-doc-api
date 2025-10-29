@@ -3,7 +3,7 @@ package com.newgen.cig.cayman.document.implementation;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.newgen.cig.cayman.document.interfaces.DocumentInterface;
-import com.newgen.cig.cayman.document.model.*;
+import com.newgen.cig.cayman.document.model.dao.*;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +14,9 @@ import org.springframework.web.client.RestTemplate;
 public class DocumentImpl implements DocumentInterface {
 
     private static final Logger LOG = Logger.getLogger(DocumentImpl.class);
+
+    @Autowired
+    private DocumentResponse docResponse;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -64,31 +67,40 @@ public class DocumentImpl implements DocumentInterface {
 
             LOG.info("//----------- Executed Successfully ----------//");
             LOG.debug("Response Status: " + docRes.getStatusCode() + ", Response Body: " + docRes.getBody());
-
             String documentResponse = docRes.getBody();
-            LOG.debug("Document Response: " + documentResponse);
-
             JsonNode jNode = stringToJsonObject(documentResponse);
 
             LOG.debug("Converted to JsonNode: "+jNode.toString());
 
-            // Check if the response body is not null
             if (jNode.get("NGOGetDocumentBDOResponse") == null) {
                 LOG.error("Received null response body");
                 throw new Exception("Error: No content received from the server.");
             }
 
-            String statusCode = jNode.get("NGOGetDocumentBDOResponse").get("statusCode").toString();
+            String statusCode = trimString(jNode.get("NGOGetDocumentBDOResponse").get("statusCode").toString());
+            String message = trimString(jNode.get("NGOGetDocumentBDOResponse").get("message").toString());
+            docResponse.setMessage(message);
+            docResponse.setStatusCode(statusCode);
+            if ("0".equals(statusCode)) {
 
-            if ("\"0\"".equals(statusCode)) {
-                int length = jNode.get("NGOGetDocumentBDOResponse").get("docContent").toString().length();
-                String ret = jNode.get("NGOGetDocumentBDOResponse").get("docContent").toString().substring(1,length-1);
+                String ret = trimString(jNode.get("NGOGetDocumentBDOResponse").get("docContent").toString());
+                String createdByAppName = trimString(jNode.get("NGOGetDocumentBDOResponse").get("createdByAppName").toString());
+                String documentName = trimString(jNode.get("NGOGetDocumentBDOResponse").get("documentName").toString());
+                String documentType = trimString(jNode.get("NGOGetDocumentBDOResponse").get("documentType").toString());
+                String documentSize = trimString(jNode.get("NGOGetDocumentBDOResponse").get("documentSize").toString());
+
+                docResponse.setDocContent(ret);
+                docResponse.setCreatedByAppName(createdByAppName);
+                docResponse.setDocumentName(documentName);
+                docResponse.setDocumentType(documentType);
+                docResponse.setDocumentSize(documentSize);
+
                 LOG.debug("Document Content Base64: "+ret);
                 return ret;
             }
 
             LOG.error("Error Occurred: " + documentResponse);
-            throw new Exception("Error: " + jNode.get("NGOGetDocumentBDOResponse").get("message"));
+            throw new Exception("Error: " + message);
 
         } catch (Exception e) {
             LOG.error("Exception occurred while fetching document: " + e.getMessage(), e);
@@ -115,5 +127,10 @@ public class DocumentImpl implements DocumentInterface {
     public JsonNode stringToJsonObject(String jsonString) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readTree(jsonString);
+    }
+
+    private String trimString(String str){
+        int len = str.length();
+        return str.substring(1, len-1);
     }
 }

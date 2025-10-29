@@ -1,7 +1,6 @@
-package com.newgen.cig.cayman.document.model;
+package com.newgen.cig.cayman.document.model.dao;
 
 import com.newgen.cig.cayman.document.implementation.Operations;
-import com.newgen.dmsapi.DMSCallBroker;
 import com.newgen.dmsapi.DMSInputXml;
 import jakarta.annotation.PostConstruct;
 import org.jboss.logging.Logger;

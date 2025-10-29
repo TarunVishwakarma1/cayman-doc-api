@@ -1,13 +1,11 @@
 package com.newgen.cig.cayman.document.implementation;
 
-import com.newgen.cig.cayman.document.model.CabinetProperties;
+import com.newgen.cig.cayman.document.model.dao.CabinetProperties;
 import com.newgen.dmsapi.DMSCallBroker;
 import com.newgen.dmsapi.DMSXmlResponse;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 
 @Service
 public class Operations {

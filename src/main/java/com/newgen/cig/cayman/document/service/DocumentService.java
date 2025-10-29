@@ -2,7 +2,7 @@ package com.newgen.cig.cayman.document.service;
 
 import com.newgen.cig.cayman.document.implementation.Operations;
 import com.newgen.cig.cayman.document.interfaces.DocumentInterface;
-import com.newgen.cig.cayman.document.model.GlobalSessionService;
+import com.newgen.cig.cayman.document.model.dao.GlobalSessionService;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

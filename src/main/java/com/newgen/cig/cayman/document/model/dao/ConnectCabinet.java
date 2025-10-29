@@ -3,7 +3,8 @@ package com.newgen.cig.cayman.document.model.dao;
 import com.newgen.cig.cayman.document.implementation.Operations;
 import com.newgen.dmsapi.DMSInputXml;
 import jakarta.annotation.PostConstruct;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConnectCabinet {
 
-    private static final Logger LOG = Logger.getLogger(ConnectCabinet.class);
+    private static final Logger logger = LoggerFactory.getLogger(ConnectCabinet.class);
 
     @Autowired
     private GlobalSessionService sessionService;
@@ -65,28 +66,60 @@ public class ConnectCabinet {
     }
 
     public void setSessionId(String sessionId){
+        logger.trace("Setting session ID: {}", sessionId);
         this.sessionId = sessionId;
         sessionService.setSessionId(sessionId);
+        logger.debug("Session ID set successfully");
     }
 
     public String getSessionId(){
-        return sessionService.getSessionId();
+        logger.trace("Getting session ID");
+        String sessionId = sessionService.getSessionId();
+        logger.debug("Session ID retrieved: {}", sessionId);
+        return sessionId;
     }
 
     DMSInputXml objInp = new DMSInputXml();
 
+    @PostConstruct
+    public void init() {
+        logger.info("ConnectCabinet component initialized");
+        logger.debug("Cabinet configuration - Name: {}, IP: {}, Port: {}, Username: {}", 
+                cabinetName, jtsIP, jtsPort, username);
+    }
+
     public String connect() throws Exception {
-        String inputXML = objInp.getConnectCabinetXml(this.cabinetName, this.username, this.password, null, this.userExists, "en_us");
-        LOG.info("//--------- Connecting To Cabinet ---------//");
-        String outXML = operations.executeXML(inputXML);
-        LOG.info("//--------- Cabinet Connected Successfully ---------//");
-        return outXML;
+        logger.trace("Entering connect() method");
+        logger.info("Connecting to cabinet. CabinetName: {}, Username: {}", cabinetName, username);
+        try {
+            logger.debug("Generating connect cabinet XML");
+            String inputXML = objInp.getConnectCabinetXml(this.cabinetName, this.username, this.password, null, this.userExists, "en_us");
+            logger.debug("Connect XML generated. Length: {}", inputXML != null ? inputXML.length() : 0);
+            logger.trace("Executing XML to connect to cabinet");
+            String outXML = operations.executeXML(inputXML);
+            logger.info("Cabinet connected successfully. CabinetName: {}", cabinetName);
+            logger.debug("Connection response received. Length: {}", outXML != null ? outXML.length() : 0);
+            return outXML;
+        } catch (Exception e) {
+            logger.error("Exception occurred while connecting to cabinet. CabinetName: {}", cabinetName, e);
+            throw e;
+        }
     }
 
     public void disconnect() throws  Exception {
-        String inpXML = objInp.getDisconnectCabinetXml(cabinetName, this.sessionId);
-        LOG.info("//--------- Disconnecting Cabinet ---------//");
-        operations.executeXML(inpXML);
-        LOG.info("//--------- Cabinet Disconnected Successfully ---------//");
+        logger.trace("Entering disconnect() method");
+        logger.info("Disconnecting from cabinet. CabinetName: {}, SessionId: {}", cabinetName, sessionId);
+        try {
+            logger.debug("Generating disconnect cabinet XML");
+            String inpXML = objInp.getDisconnectCabinetXml(cabinetName, this.sessionId);
+            logger.debug("Disconnect XML generated. Length: {}", inpXML != null ? inpXML.length() : 0);
+            logger.trace("Executing XML to disconnect from cabinet");
+            operations.executeXML(inpXML);
+            logger.info("Cabinet disconnected successfully. CabinetName: {}", cabinetName);
+            logger.trace("Exiting disconnect() method with success");
+        } catch (Exception e) {
+            logger.error("Exception occurred while disconnecting from cabinet. CabinetName: {}", cabinetName, e);
+            throw e;
+        }
     }
 }

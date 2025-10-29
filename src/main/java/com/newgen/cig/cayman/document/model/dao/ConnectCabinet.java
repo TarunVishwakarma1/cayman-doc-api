@@ -73,16 +73,6 @@ public class ConnectCabinet {
         return sessionService.getSessionId();
     }
 
-    @PostConstruct
-    public void logProperties() {
-        LOG.debug("username: " + this.username);
-        LOG.debug("password: " + this.password);
-        LOG.debug("cabinetName: " + this.cabinetName);
-        LOG.debug("jtsIP: " + this.jtsIP);
-        LOG.debug("jtsPort: " + this.jtsPort);
-        LOG.debug("userExists: " + this.userExists);
-    }
-
     DMSInputXml objInp = new DMSInputXml();
 
     public String connect() throws Exception {

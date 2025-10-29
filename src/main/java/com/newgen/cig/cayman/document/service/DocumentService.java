@@ -7,6 +7,7 @@ import com.newgen.cig.cayman.document.exception.XmlParsingException;
 import com.newgen.cig.cayman.document.implementation.Operations;
 import com.newgen.cig.cayman.document.interfaces.DocumentInterface;
 import com.newgen.cig.cayman.document.model.dao.GlobalSessionService;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,6 +102,7 @@ public class DocumentService {
      * @throws CabinetConnectionException if connection to cabinet fails
      * @throws XmlParsingException if XML parsing fails
      */
+    @PostConstruct
     public String getSessionId() {
         logger.trace("Entering getSessionId() method");
         logger.info("Attempting to get session ID");

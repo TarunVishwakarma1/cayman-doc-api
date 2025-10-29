@@ -1,5 +1,7 @@
 package com.newgen.cig.cayman.document.model.enums;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 
 import java.util.Arrays;
@@ -20,6 +22,8 @@ public enum DocumentType {
     TXT("txt", MediaType.TEXT_PLAIN_VALUE),
     ZIP("zip", "application/zip");
 
+    private static final Logger logger = LoggerFactory.getLogger(DocumentType.class);
+
     private final String extension;
     private final String contentType;
 
@@ -37,10 +41,33 @@ public enum DocumentType {
     }
 
     public static DocumentType fromExtension(String extension){
-        return Arrays.stream(values())
-                .filter(type -> type.extension.equalsIgnoreCase(extension))
+        logger.trace("Looking up DocumentType for extension: {}", extension);
+        
+        if (extension == null || extension.trim().isEmpty()) {
+            logger.error("Extension is null or empty");
+            throw new IllegalArgumentException("Extension cannot be null or empty");
+        }
+        
+        String normalizedExtension = extension.toLowerCase().trim();
+        logger.debug("Normalized extension: {}", normalizedExtension);
+        
+        DocumentType result = Arrays.stream(values())
+                .filter(type -> type.extension.equalsIgnoreCase(normalizedExtension))
                 .findFirst()
-                .orElseThrow(()-> new IllegalArgumentException("Unsupported file Type: "+ extension));
+                .orElse(null);
+        
+        if (result == null) {
+            logger.warn("Unsupported file type requested: {}", extension);
+            logger.debug("Available extensions: {}", Arrays.toString(Arrays.stream(values())
+                    .map(type -> type.extension)
+                    .toArray(String[]::new)));
+            throw new IllegalArgumentException("Unsupported file Type: " + extension);
+        }
+        
+        logger.info("DocumentType found for extension '{}': {} (Content-Type: {})", 
+                extension, result.name(), result.getContentType());
+        logger.trace("DocumentType lookup successful");
+        return result;
     }
 
 }

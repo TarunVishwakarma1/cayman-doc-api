@@ -1,23 +1,32 @@
 package com.newgen.cig.cayman.document.model.dao;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DocumentRequest {
+
+    private static final Logger logger = LoggerFactory.getLogger(DocumentRequest.class);
 
     @JsonProperty("NGOGetDocumentBDO")
     private NGOGetDocumentBDO ngoGetDocumentBDO;
 
     // Getter and Setter for ngoGetDocumentBDO
     public NGOGetDocumentBDO getNgoGetDocumentBDO() {
+        logger.trace("Getting ngoGetDocumentBDO");
         return ngoGetDocumentBDO;
     }
 
     public void setNgoGetDocumentBDO(NGOGetDocumentBDO ngoGetDocumentBDO) {
+        logger.trace("Setting ngoGetDocumentBDO");
+        logger.debug("Setting ngoGetDocumentBDO: {}", ngoGetDocumentBDO != null ? "not null" : "null");
         this.ngoGetDocumentBDO = ngoGetDocumentBDO;
     }
 
     // Inner class for NGOGetDocumentBDO
     public static class NGOGetDocumentBDO {
+
+        private static final Logger logger = LoggerFactory.getLogger(NGOGetDocumentBDO.class);
 
         private String cabinetName;
         private String docIndex;
@@ -32,82 +41,102 @@ public class DocumentRequest {
 
         // Getters and Setters for each field
         public String getCabinetName() {
+            logger.trace("Getting cabinetName");
             return cabinetName;
         }
 
         public void setCabinetName(String cabinetName) {
+            logger.trace("Setting cabinetName: {}", cabinetName);
             this.cabinetName = cabinetName;
         }
 
         public String getDocIndex() {
+            logger.trace("Getting docIndex");
             return docIndex;
         }
 
         public void setDocIndex(String docIndex) {
+            logger.trace("Setting docIndex: {}", docIndex);
             this.docIndex = docIndex;
         }
 
         public String getVersionNo() {
+            logger.trace("Getting versionNo");
             return versionNo;
         }
 
         public void setVersionNo(String versionNo) {
+            logger.trace("Setting versionNo: {}", versionNo);
             this.versionNo = versionNo;
         }
 
         public String getUserName() {
+            logger.trace("Getting userName");
             return userName;
         }
 
         public void setUserName(String userName) {
+            logger.trace("Setting userName: {}", userName != null && !userName.isEmpty() ? "***" : "empty");
             this.userName = userName;
         }
 
         public String getUserPassword() {
+            logger.trace("Getting userPassword");
             return userPassword;
         }
 
         public void setUserPassword(String userPassword) {
+            logger.trace("Setting userPassword: {}", userPassword != null && !userPassword.isEmpty() ? "***" : "empty");
             this.userPassword = userPassword;
         }
 
         public String getUserDBId() {
+            logger.trace("Getting userDBId");
             return userDBId;
         }
 
         public void setUserDBId(String userDBId) {
+            logger.trace("Setting userDBId: {}", userDBId);
             this.userDBId = userDBId;
         }
 
         public String getDownloadLocation() {
+            logger.trace("Getting downloadLocation");
             return downloadLocation;
         }
 
         public void setDownloadLocation(String downloadLocation) {
+            logger.trace("Setting downloadLocation: {}", downloadLocation);
             this.downloadLocation = downloadLocation;
         }
 
         public String getAuthToken() {
+            logger.trace("Getting authToken");
             return authToken;
         }
 
         public void setAuthToken(String authToken) {
+            logger.trace("Setting authToken: {}", authToken != null && !authToken.isEmpty() ? "***" : "empty");
             this.authToken = authToken;
         }
 
         public String getAuthTokenType() {
+            logger.trace("Getting authTokenType");
             return authTokenType;
         }
 
         public void setAuthTokenType(String authTokenType) {
+            logger.trace("Setting authTokenType: {}", authTokenType);
             this.authTokenType = authTokenType;
         }
 
         public String getLocale() {
+            logger.trace("Getting locale");
             return locale;
         }
 
         public void setLocale(String locale) {
+            logger.trace("Setting locale: {}", locale);
             this.locale = locale;
         }
 

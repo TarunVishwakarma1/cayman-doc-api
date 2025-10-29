@@ -3,6 +3,7 @@ package com.newgen.cig.cayman.document.implementation;
 import com.newgen.cig.cayman.document.exception.CryptoException;
 import com.newgen.cig.cayman.document.interfaces.DecryptionService;
 import com.newgen.cig.cayman.document.model.dto.RsaDecryptionRequest;
+import com.newgen.cig.cayman.document.model.enums.ErrorCode;
 import com.newgen.cig.cayman.document.utils.Decryption;
 import com.newgen.cig.cayman.document.utils.KeyPair;
 import org.slf4j.Logger;
@@ -111,8 +112,8 @@ public class DecryptionServiceImpl implements DecryptionService {
             logger.trace("Exiting createAesKey() method with success");
             return key;
         } catch (NoSuchAlgorithmException e) {
-            logger.error("Exception occurred while creating AES key: {}", e.getMessage(), e);
-            throw new CryptoException("Error creating AES key", e);
+            logger.error("Exception occurred while creating AES key. Algorithm not found: SHA-256", e);
+            throw new CryptoException(ErrorCode.KEY_GENERATION_ERROR, "Error creating AES key - SHA-256 algorithm not found", e);
         }
     }
 }

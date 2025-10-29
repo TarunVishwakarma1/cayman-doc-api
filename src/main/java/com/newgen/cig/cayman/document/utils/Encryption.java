@@ -2,6 +2,7 @@ package com.newgen.cig.cayman.document.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.newgen.cig.cayman.document.exception.CryptoException;
+import com.newgen.cig.cayman.document.model.enums.ErrorCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,7 +61,7 @@ public final class Encryption {
             return base64Result;
         } catch (Exception e) {
             logger.error("Exception occurred while encrypting with AES: {}", e.getMessage(), e);
-            throw new CryptoException("Error encrypting with AES", e);
+            throw new CryptoException(ErrorCode.ENCRYPTION_ERROR, "Error encrypting with AES", e);
         }
     }
 
@@ -86,7 +87,7 @@ public final class Encryption {
             return base64Result;
         } catch (Exception e) {
             logger.error("Exception occurred while encrypting with RSA: {}", e.getMessage(), e);
-            throw new CryptoException("Error encrypting with RSA", e);
+            throw new CryptoException(ErrorCode.ENCRYPTION_ERROR, "Error encrypting with RSA", e);
         }
     }
 
@@ -106,7 +107,7 @@ public final class Encryption {
             return result;
         } catch (Exception e) {
             logger.error("Exception occurred while serializing or encrypting object with AES: {}", e.getMessage(), e);
-            throw new CryptoException("Error serializing or encrypting object with AES", e);
+            throw new CryptoException(ErrorCode.ENCRYPTION_ERROR, "Error serializing or encrypting object with AES", e);
         }
     }
 
@@ -128,7 +129,7 @@ public final class Encryption {
             return result;
         } catch (Exception e) {
             logger.error("Exception occurred while serializing or encrypting object with RSA: {}", e.getMessage(), e);
-            throw new CryptoException("Error serializing or encrypting object with RSA", e);
+            throw new CryptoException(ErrorCode.ENCRYPTION_ERROR, "Error serializing or encrypting object with RSA", e);
         }
     }
 }

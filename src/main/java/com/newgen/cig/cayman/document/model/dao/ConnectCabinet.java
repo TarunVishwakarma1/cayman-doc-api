@@ -88,38 +88,71 @@ public class ConnectCabinet {
                 cabinetName, jtsIP, jtsPort, username);
     }
 
-    public String connect() throws Exception {
+    public String connect() {
         logger.trace("Entering connect() method");
-        logger.info("Connecting to cabinet. CabinetName: {}, Username: {}", cabinetName, username);
+        logger.info("Connecting to cabinet. CabinetName: {}, Username: {}, JTS IP: {}, JTS Port: {}", 
+                cabinetName, username, jtsIP, jtsPort);
+        
+        if (cabinetName == null || cabinetName.trim().isEmpty()) {
+            logger.error("Cabinet name is null or empty");
+            throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Cabinet name is not configured");
+        }
+        
+        if (username == null || username.trim().isEmpty()) {
+            logger.error("Username is null or empty");
+            throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Username is not configured");
+        }
+        
         try {
             logger.debug("Generating connect cabinet XML");
             String inputXML = objInp.getConnectCabinetXml(this.cabinetName, this.username, this.password, null, this.userExists, "en_us");
             logger.debug("Connect XML generated. Length: {}", inputXML != null ? inputXML.length() : 0);
-            logger.trace("Executing XML to connect to cabinet");
+            logger.trace("Executing XML to connect to cabinet via DMS Call Broker");
             String outXML = operations.executeXML(inputXML);
-            logger.info("Cabinet connected successfully. CabinetName: {}", cabinetName);
-            logger.debug("Connection response received. Length: {}", outXML != null ? outXML.length() : 0);
+            
+            if (outXML == null || outXML.trim().isEmpty()) {
+                logger.error("Connection response is null or empty");
+                throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Connection response is empty");
+            }
+            
+            logger.info("Cabinet connected successfully. CabinetName: {}, Response length: {}", cabinetName, outXML.length());
+            logger.debug("Connection response received. Length: {}", outXML.length());
+            logger.trace("Exiting connect() method with success");
             return outXML;
-        } catch (Exception e) {
-            logger.error("Exception occurred while connecting to cabinet. CabinetName: {}", cabinetName, e);
+        } catch (com.newgen.cig.cayman.document.exception.CabinetConnectionException e) {
+            logger.error("CabinetConnectionException occurred while connecting to cabinet. CabinetName: {}", cabinetName, e);
             throw e;
+        } catch (Exception e) {
+            logger.error("Unexpected exception occurred while connecting to cabinet. CabinetName: {}", cabinetName, e);
+            throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Failed to connect to cabinet: " + e.getMessage(), e);
         }
     }
 
-    public void disconnect() throws  Exception {
+    public void disconnect() {
         logger.trace("Entering disconnect() method");
-        logger.info("Disconnecting from cabinet. CabinetName: {}, SessionId: {}", cabinetName, sessionId);
+        logger.info("Disconnecting from cabinet. CabinetName: {}, SessionId: {}", cabinetName, 
+                sessionId != null ? sessionId.substring(0, Math.min(10, sessionId.length())) + "..." : "null");
+        
+        if (sessionId == null || sessionId.trim().isEmpty()) {
+            logger.warn("Session ID is null or empty, may not disconnect properly. CabinetName: {}", cabinetName);
+        }
+        
         try {
             logger.debug("Generating disconnect cabinet XML");
             String inpXML = objInp.getDisconnectCabinetXml(cabinetName, this.sessionId);
             logger.debug("Disconnect XML generated. Length: {}", inpXML != null ? inpXML.length() : 0);
-            logger.trace("Executing XML to disconnect from cabinet");
-            operations.executeXML(inpXML);
-            logger.info("Cabinet disconnected successfully. CabinetName: {}", cabinetName);
+            logger.trace("Executing XML to disconnect from cabinet via DMS Call Broker");
+            String response = operations.executeXML(inpXML);
+            logger.info("Cabinet disconnected successfully. CabinetName: {}, Response length: {}", 
+                    cabinetName, response != null ? response.length() : 0);
+            logger.debug("Disconnection response received");
             logger.trace("Exiting disconnect() method with success");
-        } catch (Exception e) {
-            logger.error("Exception occurred while disconnecting from cabinet. CabinetName: {}", cabinetName, e);
+        } catch (com.newgen.cig.cayman.document.exception.CabinetConnectionException e) {
+            logger.error("CabinetConnectionException occurred while disconnecting from cabinet. CabinetName: {}", cabinetName, e);
             throw e;
+        } catch (Exception e) {
+            logger.error("Unexpected exception occurred while disconnecting from cabinet. CabinetName: {}", cabinetName, e);
+            throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Failed to disconnect from cabinet: " + e.getMessage(), e);
         }
     }
 }

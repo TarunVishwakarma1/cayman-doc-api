@@ -2,6 +2,7 @@ package com.newgen.cig.cayman.document.exception;
 
 import com.newgen.cig.cayman.document.model.dto.ErrorResponse;
 import com.newgen.cig.cayman.document.model.enums.ErrorCode;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,6 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 

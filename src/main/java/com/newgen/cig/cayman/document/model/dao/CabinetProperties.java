@@ -12,8 +12,15 @@ public class CabinetProperties {
 
     private static final Logger logger = LoggerFactory.getLogger(CabinetProperties.class);
 
+    @Value("${newgen.cayman.connect.cabinet.username}")
+    private String username;
+    
+    @Value("${newgen.cayman.connect.cabinet.password}")
+    private String password;
+    
     @Value("${newgen.cayman.connect.cabinet.cabinetName}")
     private String cabinetName;
+    
     @Value("${newgen.cayman.connect.cabinet.jtsIP}")
     private String jtsIP;
     @Value("${newgen.cayman.connect.cabinet.jtsPort}")
@@ -38,9 +45,29 @@ public class CabinetProperties {
     @PostConstruct
     public void init() {
         logger.info("CabinetProperties component initialized");
-        logger.debug("Cabinet configuration - Name: {}, JTS IP: {}, JTS Port: {}, Site: {}, Site IP: {}, Site Port: {}", 
-                cabinetName, jtsIP, jtsPort, site, siteIP, sitePort);
+        logger.debug("Cabinet configuration - Name: {}, Username: {}, JTS IP: {}, JTS Port: {}, Site: {}, Site IP: {}, Site Port: {}", 
+                cabinetName, username, jtsIP, jtsPort, site, siteIP, sitePort);
         logger.trace("All cabinet properties loaded from configuration");
+    }
+
+    public String getUsername() {
+        logger.trace("Getting cabinet username");
+        return username;
+    }
+
+    public void setUsername(String username) {
+        logger.trace("Setting cabinet username");
+        this.username = username;
+    }
+
+    public String getPassword() {
+        logger.trace("Getting cabinet password");
+        return password;
+    }
+
+    public void setPassword(String password) {
+        logger.trace("Setting cabinet password");
+        this.password = password;
     }
 
     public String getCabinetName() {

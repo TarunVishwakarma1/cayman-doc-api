@@ -9,7 +9,7 @@
         <relativePath/> </parent>
     <groupId>com.newgen.cig.cayman.document</groupId>
     <artifactId>caymen-document-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1</version>
     <name>caymen-document-api</name>
     <description>Demo project for Spring Boot</description>
     <url/>

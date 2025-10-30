@@ -47,8 +47,6 @@ public class DocumentImpl implements DocumentInterface {
 
     @Autowired
     private GlobalSessionService sessionService;
-
-    @Override
     
         /**
          * Connects to the OmniDocs cabinet and returns the raw XML response.
@@ -56,6 +54,7 @@ public class DocumentImpl implements DocumentInterface {
          * @return XML response from cabinet connection
          * @throws CabinetConnectionException on connectivity or response format issues
          */
+        @Override
         public String connectCabinet() {
         logger.trace("Entering connectCabinet() method");
         logger.info("Connecting to cabinet");
@@ -80,7 +79,6 @@ public class DocumentImpl implements DocumentInterface {
         }
     }
 
-    @Override
      /**
          * Fetches a document as base64 string using the given document index.
          *
@@ -91,6 +89,7 @@ public class DocumentImpl implements DocumentInterface {
          * @throws DocumentNotFoundException when document cannot be found
          * @throws ExternalServiceException for upstream errors or bad responses
          */
+     @Override
     public String fetchDoc(String docIndex) {
         logger.trace("Entering fetchDoc() method with docIndex: {}", docIndex);
         logger.info("Fetching document. DocIndex: {}", docIndex);
@@ -214,7 +213,7 @@ public class DocumentImpl implements DocumentInterface {
             throw e;
         } catch (Exception e) {
             logger.error("Exception occurred while fetching document. DocIndex: {}", docIndex, e);
-            logger.error("Error message: {}, Cause: {}", e.getMessage(), e.getCause());
+            logger.error("Error message: {}, Cause:", e.getMessage(), e.getCause());
             throw new ExternalServiceException("Failed to fetch document for docIndex: " + docIndex, e);
         }
     }

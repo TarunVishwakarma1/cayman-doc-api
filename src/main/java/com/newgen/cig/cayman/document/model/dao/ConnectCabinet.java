@@ -122,6 +122,16 @@ public class ConnectCabinet {
             logger.error("Username is null or empty");
             throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Username is not configured");
         }
+
+        if (password == null || password.trim().isEmpty()) {
+            logger.error("Password is null or empty");
+            throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Password is not configured");
+        }
+
+        if (jtsIP == null || jtsIP.trim().isEmpty()) {
+            logger.error("JTS IP is null or empty");
+            throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("JTS IP is not configured");
+        }
         
         try {
             logger.debug("Generating connect cabinet XML");

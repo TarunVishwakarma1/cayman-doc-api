@@ -71,35 +71,6 @@
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.8.13</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.newgen</groupId>
-            <artifactId>odweb</artifactId>
-            <scope>system</scope>
-            <version>1</version>
-            <systemPath>${lib.path}/odweb.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.newgen.jtssessionbean</groupId>
-            <artifactId>jtssessionbean</artifactId>
-            <scope>system</scope>
-            <version>1</version>
-            <systemPath>${lib.path}/jtssessionbean.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.newgen.ejbclient</groupId>
-            <artifactId>ejbclient</artifactId>
-            <scope>system</scope>
-            <version>1</version>
-            <systemPath>${lib.path}/ejbclient.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.newgen.log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <scope>system</scope>
-            <version>1.2.14</version>
-            <systemPath>${lib.path}/log4j.jar</systemPath>
-        </dependency>
     </dependencies>
 
     <build>

@@ -48,25 +48,25 @@ public class DocumentImpl implements DocumentInterface {
     @Autowired
     private GlobalSessionService sessionService;
     
-        /**
-         * Connects to the OmniDocs cabinet and returns the raw XML response.
-         *
-         * @return XML response from cabinet connection
-         * @throws CabinetConnectionException on connectivity or response format issues
-         */
-        @Override
-        public String connectCabinet() {
+    /**
+     * Connects to the OmniDocs cabinet and returns the raw JSON response.
+     *
+     * @return JSON response from cabinet connection
+     * @throws CabinetConnectionException on connectivity or response format issues
+     */
+    @Override
+    public String connectCabinet() {
         logger.trace("Entering connectCabinet() method");
         logger.info("Connecting to cabinet");
         try {
             logger.debug("Calling cabinet.connect()");
             String response = cabinet.connect();
-            
+        
             if (response == null || response.trim().isEmpty()) {
                 logger.error("Cabinet connection returned null or empty response");
                 throw new CabinetConnectionException("Cabinet connection returned null or empty response");
             }
-            
+        
             logger.info("Cabinet connected successfully. Response length: {}", response.length());
             logger.debug("Cabinet connection response: {}", response);
             logger.trace("Exiting connectCabinet() method with success");

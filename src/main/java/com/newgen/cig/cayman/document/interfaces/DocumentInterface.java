@@ -11,9 +11,9 @@ package com.newgen.cig.cayman.document.interfaces;
  */
 public interface DocumentInterface {
     /**
-     * Connects to the OmniDocs cabinet and returns the raw XML response.
+     * Connects to the OmniDocs cabinet and returns the raw JSON response.
      *
-     * @return XML response containing connection details and session id
+     * @return JSON response containing connection details and session id
      */
     String connectCabinet();
     /**

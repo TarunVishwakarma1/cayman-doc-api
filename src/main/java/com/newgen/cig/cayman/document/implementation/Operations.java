@@ -1,14 +1,15 @@
 package com.newgen.cig.cayman.document.implementation;
 
-import com.newgen.cig.cayman.document.exception.XmlParsingException;
-import com.newgen.cig.cayman.document.exception.CabinetConnectionException;
 import com.newgen.cig.cayman.document.model.dao.CabinetProperties;
-import com.newgen.dmsapi.DMSCallBroker;
-import com.newgen.dmsapi.DMSXmlResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.newgen.cig.cayman.document.exception.JsonParsingException;
 
     /**
      * Helper service for XML-related operations with Newgen DMS APIs.
@@ -34,100 +35,62 @@ import org.springframework.stereotype.Service;
     @Autowired
     private CabinetProperties cabinet;
 
+    private ObjectMapper objectMapper = new ObjectMapper();
+
     /**
-     * Extracts a value from XML by key.
+     * Extracts a value from JSON by key path.
      *
-     * @param xml raw XML content
-     * @param key target node key
-     * @return extracted value
-     * @throws XmlParsingException on invalid XML or missing key
+     * @param json raw JSON content
+     * @param key target node key (supports nested paths like "NGOExecuteAPIResponseBDO.outputData.NGOConnectCabinet_Output.UserDBId")
+     * @return extracted value as string
+     * @throws JsonParsingException on invalid JSON or missing key
      */
-    public String getValueFromXML(String xml, String key){
-        logger.trace("Entering getValueFromXML() method. Key: {}", key);
-        logger.debug("Parameters provided - XML length: {}, Key: {}", xml != null ? xml.length() : 0, key);
+    public String getValueFromJSON(String json, String key) {
+        logger.trace("Entering getValueFromJSON() method. Key: {}", key);
+        logger.debug("Parameters provided - JSON length: {}, Key: {}", json != null ? json.length() : 0, key);
         
-        if (xml == null || xml.trim().isEmpty()) {
-            logger.error("XML is null or empty");
-            throw new XmlParsingException("XML content cannot be null or empty");
+        if (json == null || json.trim().isEmpty()) {
+            logger.error("JSON is null or empty");
+            throw new JsonParsingException("JSON content cannot be null or empty");
         }
         
         if (key == null || key.trim().isEmpty()) {
             logger.error("Key is null or empty");
-            throw new XmlParsingException("Key cannot be null or empty");
+            throw new JsonParsingException("Key cannot be null or empty");
         }
         
         try {
-            logger.trace("Creating DMSXmlResponse from XML");
-            DMSXmlResponse xmlResponse = new DMSXmlResponse(xml);
-            logger.trace("Extracting value from XML for key: {}", key);
-            String value = xmlResponse.getVal(key);
-            logger.info("Value extracted successfully. Key: {}, Value length: {}", key, value != null ? value.length() : 0);
-            logger.debug("Extracted value: {}", value);
-            logger.trace("Exiting getValueFromXML() method with success");
+            logger.trace("Parsing JSON content");
+            JsonNode rootNode = objectMapper.readTree(json);
+            
+            // Navigate through nested path if key contains dots
+            JsonNode currentNode = rootNode;
+            String[] pathParts = key.split("\\.");
+            
+            for (String part : pathParts) {
+                logger.trace("Navigating to JSON node: {}", part);
+                currentNode = currentNode.get(part);
+                if (currentNode == null) {
+                    logger.error("JSON path not found: {}", key);
+                    throw new JsonParsingException("JSON path not found: " + key);
+                }
+            }
+            
+            String value = currentNode.isTextual() ? currentNode.asText() : currentNode.toString();
+            
+            // Remove quotes if it's a number represented as text
+            if (currentNode.isNumber()) {
+                value = String.valueOf(currentNode.asLong());
+            }
+            
+            logger.info("Value extracted successfully. Key: {}, Value: {}", key, value);
+            logger.trace("Exiting getValueFromJSON() method with success");
             return value;
-        } catch (XmlParsingException e) {
+        } catch (JsonParsingException e) {
             throw e;
         } catch (Exception e) {
-            logger.error("Exception occurred while extracting value from XML. Key: {}", key, e);
-            throw new XmlParsingException("Failed to extract value from XML for key: " + key, e);
-        }
-    }
-
-    /**
-     * Executes XML via DMS Call Broker using configured JTS IP/Port.
-     *
-     * @param xml request XML to send
-     * @return response XML from DMS
-     * @throws CabinetConnectionException on connectivity/config errors
-     * @throws XmlParsingException when XML input is invalid
-     */
-    public String executeXML(String xml) {
-        logger.trace("Entering executeXML() method");
-        logger.info("Executing XML via DMS Call Broker");
-        logger.debug("XML to be executed. Length: {}", xml != null ? xml.length() : 0);
-        
-        if (xml == null || xml.trim().isEmpty()) {
-            logger.error("XML is null or empty");
-            throw new XmlParsingException("XML content cannot be null or empty");
-        }
-        
-        try {
-            String jtsIP = cabinet.getJtsIP();
-            String jtsPort = cabinet.getJtsPort();
-            
-            if (jtsIP == null || jtsIP.trim().isEmpty()) {
-                logger.error("JTS IP is not configured");
-                throw new CabinetConnectionException("JTS IP is not configured");
-            }
-            
-            if (jtsPort == null || jtsPort.trim().isEmpty()) {
-                logger.error("JTS Port is not configured");
-                throw new CabinetConnectionException("JTS Port is not configured");
-            }
-            
-            logger.debug("DMS Connection details - IP: {}, Port: {}", jtsIP, jtsPort);
-            logger.trace("Calling DMSCallBroker.execute()");
-            
-            String outXML = DMSCallBroker.execute(xml, jtsIP, Integer.parseInt(jtsPort), 1);
-            
-            if (outXML == null || outXML.trim().isEmpty()) {
-                logger.error("DMS returned empty or null response");
-                throw new CabinetConnectionException("DMS returned empty or null response");
-            }
-            
-            logger.info("XML executed successfully");
-            logger.debug("XML response received. Length: {}", outXML.length());
-            logger.trace("Exiting executeXML() method with success");
-            return outXML;
-        } catch (NumberFormatException e) {
-            logger.error("Invalid JTS port format: {}", cabinet.getJtsPort(), e);
-            throw new CabinetConnectionException("Invalid JTS port format: " + cabinet.getJtsPort(), e);
-        } catch (CabinetConnectionException | XmlParsingException e) {
-            throw e;
-        } catch (Exception e) {
-            logger.error("Exception occurred while executing XML: {}", e.getMessage(), e);
-            logger.error("XML that failed: {}", xml);
-            throw new CabinetConnectionException("Failed to execute XML via DMS Call Broker", e);
+            logger.error("Exception occurred while extracting value from JSON. Key: {}", key, e);
+            throw new JsonParsingException("Failed to extract value from JSON for key: " + key, e);
         }
     }
 }

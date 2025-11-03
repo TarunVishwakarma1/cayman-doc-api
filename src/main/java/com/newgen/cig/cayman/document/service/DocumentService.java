@@ -1,9 +1,6 @@
 package com.newgen.cig.cayman.document.service;
 
-import com.newgen.cig.cayman.document.exception.CabinetConnectionException;
-import com.newgen.cig.cayman.document.exception.DocumentNotFoundException;
-import com.newgen.cig.cayman.document.exception.ExternalServiceException;
-import com.newgen.cig.cayman.document.exception.XmlParsingException;
+import com.newgen.cig.cayman.document.exception.*;
 import com.newgen.cig.cayman.document.implementation.Operations;
 import com.newgen.cig.cayman.document.interfaces.DocumentInterface;
 import com.newgen.cig.cayman.document.model.dao.GlobalSessionService;
@@ -172,13 +169,13 @@ public class DocumentService {
                 
                 logger.debug("Cabinet connection successful. Response length: {} characters", response.length());
                 
-                // Extract session ID from XML
-                logger.trace("Extracting UserDBId from XML response");
-                String sessionId = operations.getValueFromXML(response, "UserDBId");
+                // Extract session ID from JSON
+                logger.trace("Extracting UserDBId from JSON response");
+                String sessionId = operations.getValueFromJSON(response, "NGOExecuteAPIResponseBDO.outputData.NGOConnectCabinet_Output.UserDBId");
                 
                 if (sessionId == null || sessionId.trim().isEmpty()) {
-                    logger.error("Failed to extract valid session ID from XML response on attempt {}", attempt);
-                    throw new XmlParsingException("UserDBId not found in cabinet response");
+                    logger.error("Failed to extract valid session ID from JSON response on attempt {}", attempt);
+                    throw new JsonParsingException("UserDBId not found in cabinet response");
                 }
                 
                 logger.debug("Session ID extracted successfully. SessionId: {}...", 

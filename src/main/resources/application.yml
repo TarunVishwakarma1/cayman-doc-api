@@ -22,7 +22,7 @@ newgen:
         username: ENC(z6idj4u7Bfoaftw6QFZpweVVPvfaOBCQ8Jpv8DkMRIMmFzc=)
         password: ENC(hjOpOkt6fChqyRC8WPtO9SbqCYVRYvElyXfGsfp9tAcU1rPd)
         cabinetName: worcuat
-        siteURL: http://127.0.0.1:8080
+        siteURL: http://sdlworcecmpx01.admin.gov.ky:8080
         siteURI: /OmniDocsRestWS/rest/services
         site:
           document:

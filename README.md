@@ -709,6 +709,7 @@ ABC123DEF456GHI789
 **Description:** Download a document as a file attachment with appropriate content-type and filename.
 
 **Parameters:**
+
 | Name | Type | Location | Required | Description |
 |------|------|----------|----------|-------------|
 | `docIndex` | String | Path | Yes | Unique document identifier in OmniDocs |
@@ -737,16 +738,17 @@ Content-Disposition: attachment; filename="InvoiceDoc.pdf"
 - `429 Too Many Requests`: Rate limit exceeded
 
 **Supported Document Types:**
-| Extension | MIME Type |
-|-----------|-----------|
-| `.pdf` | `application/pdf` |
-| `.tiff` / `.tif` | `image/tiff` |
-| `.jpg` / `.jpeg` | `image/jpeg` |
-| `.png` | `image/png` |
-| `.doc` | `application/msword` |
-| `.docx` | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` |
-| `.xls` | `application/vnd.ms-excel` |
-| `.xlsx` | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` |
+
+| Extension      | MIME Type |
+|----------------|-----------|
+| `.pdf`         | `application/pdf` |
+| `.tiff` `.tif` | `image/tiff` |
+| `.jpg` `.jpeg` | `image/jpeg` |
+| `.png`         | `image/png` |
+| `.doc`         | `application/msword` |
+| `.docx`        | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` |
+| `.xls`         | `application/vnd.ms-excel` |
+| `.xlsx`        | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` |
 
 ---
 
@@ -757,6 +759,7 @@ Content-Disposition: attachment; filename="InvoiceDoc.pdf"
 **Description:** Fetch document content as Base64 string or raw bytes for inline display.
 
 **Parameters:**
+
 | Name | Type | Location | Required | Description |
 |------|------|----------|----------|-------------|
 | `format` | String | Path | Yes | Response format: `base64` or `bytes` |
@@ -1901,19 +1904,6 @@ tail -n 100 logs/cayman-doc-api.log
 4. Review OmniDocs server logs
 5. Validate cabinet credentials
 
----
-
-**Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
-
-**Example:**
-```
-feat(security): Add JWT authentication support
-
-Implement JWT-based authentication for API endpoints
-using Spring Security and jjwt library.
-
-Closes #123
-```
 
 ---
 

@@ -1,13 +1,18 @@
 package com.newgen.cig.cayman.document.model.dao;
 
-import com.newgen.cig.cayman.document.implementation.Operations;
-import com.newgen.dmsapi.DMSInputXml;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
 
     /**
      * Manages establishing and closing sessions with the OmniDocs cabinet.
@@ -32,7 +37,10 @@ public class ConnectCabinet {
     private GlobalSessionService sessionService;
 
     @Autowired
-    private Operations operations;
+    private RestTemplate restTemplate;
+    
+    @Autowired
+    private CabinetProperties properties;
 
     @Value("${newgen.cayman.connect.cabinet.username}")
     private String username;
@@ -40,20 +48,13 @@ public class ConnectCabinet {
     private String password;
     @Value("${newgen.cayman.connect.cabinet.cabinetName}")
     private String cabinetName;
-    @Value("${newgen.cayman.connect.cabinet.jtsIP}")
-    private String jtsIP;
-    @Value("${newgen.cayman.connect.cabinet.jtsPort}")
-    private String jtsPort;
-    @Value("${newgen.cayman.connect.cabinet.mainGroupIndex}")
-    private String mainGroupIndex;
     @Value("${newgen.cayman.connect.cabinet.userExists}")
     private String userExists;
-    private String sessionId;
 
-    // Getters and Setters
+    private ObjectMapper objectMapper = new ObjectMapper();
+
     public String getUsername() {
         return username;
-
     }
 
     public String getPassword() {
@@ -64,24 +65,12 @@ public class ConnectCabinet {
         return cabinetName;
     }
 
-    public String getJtsIP() {
-        return jtsIP;
-    }
-
-    public String getJtsPort() {
-        return jtsPort;
-    }
-
-    public String getMainGroupIndex() {
-        return mainGroupIndex;
-    }
     public String getUserExists() {
         return userExists;
     }
 
     public void setSessionId(String sessionId){
         logger.trace("Setting session ID: {}", sessionId);
-        this.sessionId = sessionId;
         sessionService.setSessionId(sessionId);
         logger.debug("Session ID set successfully");
     }
@@ -93,25 +82,21 @@ public class ConnectCabinet {
         return sessionId;
     }
 
-    DMSInputXml objInp = new DMSInputXml();
-
     @PostConstruct
     public void init() {
         logger.info("ConnectCabinet component initialized");
-        logger.debug("Cabinet configuration - Name: {}, IP: {}, Port: {}, Username: {}", 
-                cabinetName, jtsIP, jtsPort, username);
+        logger.debug("Cabinet configuration - Name: {}, Username: {}", cabinetName, username);
     }
 
     /**
-     * Connects to the cabinet and returns raw XML response.
+     * Connects to the cabinet and returns raw JSON response.
      *
-     * @return XML response from connect operation
+     * @return JSON response from connect operation
      * @throws com.newgen.cig.cayman.document.exception.CabinetConnectionException on errors
      */
     public String connect() {
         logger.trace("Entering connect() method");
-        logger.info("Connecting to cabinet. CabinetName: {}, Username: {}, JTS IP: {}, JTS Port: {}", 
-                cabinetName, username, jtsIP, jtsPort);
+        logger.info("Connecting to cabinet. CabinetName: {}, Username: {}", cabinetName, username);
         
         if (cabinetName == null || cabinetName.trim().isEmpty()) {
             logger.error("Cabinet name is null or empty");
@@ -128,64 +113,93 @@ public class ConnectCabinet {
             throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Password is not configured");
         }
 
-        if (jtsIP == null || jtsIP.trim().isEmpty()) {
-            logger.error("JTS IP is null or empty");
-            throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("JTS IP is not configured");
-        }
-        
         try {
-            logger.debug("Generating connect cabinet XML");
-            String inputXML = objInp.getConnectCabinetXml(this.cabinetName, this.username, this.password, null, this.userExists, "en_us");
-            logger.debug("Connect XML generated. Length: {}", inputXML != null ? inputXML.length() : 0);
-            logger.trace("Executing XML to connect to cabinet via DMS Call Broker");
-            String outXML = operations.executeXML(inputXML);
+            // Build the same URL as fetchDoc
+            String url = properties.getSiteURL()
+                    + properties.getSiteURI()
+                    + properties.getRequestJson();
+            logger.debug("Constructed API URL: {}", url);
+
+            // Build request JSON structure
+            Map<String, Object> ngoConnectCabinetInput = new HashMap<>();
+            ngoConnectCabinetInput.put("Option", "NGOConnectCabinet");
+            ngoConnectCabinetInput.put("UserExist", this.userExists);
+            ngoConnectCabinetInput.put("cabinetName", this.cabinetName);
+            ngoConnectCabinetInput.put("UserName", this.username);
+            ngoConnectCabinetInput.put("UserPassword", this.password);
+            ngoConnectCabinetInput.put("locale", "en_us");
+
+            Map<String, Object> inputData = new HashMap<>();
+            inputData.put("NGOConnectCabinet_Input", ngoConnectCabinetInput);
+
+            Map<String, Object> ngoExecuteAPOBDO = new HashMap<>();
+            ngoExecuteAPOBDO.put("inputData", inputData);
+            ngoExecuteAPOBDO.put("base64Encoded", "N");
+            ngoExecuteAPOBDO.put("locale", "en_us");
+            ngoExecuteAPOBDO.put("authToken", "");
+            ngoExecuteAPOBDO.put("authTokenType", "");
+
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("NGOExecuteAPOBDO", ngoExecuteAPOBDO);
+
+            logger.debug("Request body created for cabinet connection");
+            logger.trace("Sending POST request to URL: {}", url);
+
+            ResponseEntity<String> response = restTemplate.postForEntity(url, requestBody, String.class);
             
-            if (outXML == null || outXML.trim().isEmpty()) {
-                logger.error("Connection response is null or empty");
-                throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Connection response is empty");
+            logger.info("API call completed successfully. HTTP Status: {}", response.getStatusCode());
+            logger.debug("Response status code: {}", response.getStatusCode());
+
+            String responseBody = response.getBody();
+            
+            if (responseBody == null || responseBody.trim().isEmpty()) {
+                logger.error("Received null or empty response body");
+                throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Received empty response from cabinet service");
             }
             
-            logger.info("Cabinet connected successfully. CabinetName: {}, Response length: {}", cabinetName, outXML.length());
-            logger.debug("Connection response received. Length: {}", outXML.length());
+            logger.debug("Response body received. Length: {}", responseBody.length());
+            
+            // Parse response to extract UserDBId (session ID)
+            JsonNode jsonNode = objectMapper.readTree(responseBody);
+            JsonNode responseNode = jsonNode.get("NGOExecuteAPIResponseBDO");
+            
+            if (responseNode == null) {
+                logger.error("Invalid response format: Missing NGOExecuteAPIResponseBDO");
+                throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Invalid response format");
+            }
+            
+            String statusCode = responseNode.get("statusCode") != null ? 
+                    responseNode.get("statusCode").asText() : "";
+            
+            if (!"0".equals(statusCode)) {
+                logger.error("Connection failed with status code: {}", statusCode);
+                throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException(
+                        "Failed to connect to cabinet. Status code: " + statusCode);
+            }
+            
+            JsonNode outputData = responseNode.get("outputData");
+            if (outputData != null) {
+                JsonNode connectOutput = outputData.get("NGOConnectCabinet_Output");
+                if (connectOutput != null) {
+                    JsonNode userDbIdNode = connectOutput.get("UserDBId");
+                    if (userDbIdNode != null) {
+                        String userDbId = String.valueOf(userDbIdNode.asLong());
+                        logger.info("Cabinet connected successfully. UserDBId: {}", userDbId);
+                        setSessionId(userDbId);
+                    }
+                }
+            }
+            
+            logger.info("Cabinet connected successfully. CabinetName: {}", cabinetName);
             logger.trace("Exiting connect() method with success");
-            return outXML;
+            return responseBody;
+            
         } catch (com.newgen.cig.cayman.document.exception.CabinetConnectionException e) {
             logger.error("CabinetConnectionException occurred while connecting to cabinet. CabinetName: {}", cabinetName, e);
             throw e;
         } catch (Exception e) {
             logger.error("Unexpected exception occurred while connecting to cabinet. CabinetName: {}", cabinetName, e);
             throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Failed to connect to cabinet: " + e.getMessage(), e);
-        }
-    }
-
-    /**
-     * Disconnects the current session from the cabinet.
-     */
-    public void disconnect() {
-        logger.trace("Entering disconnect() method");
-        logger.info("Disconnecting from cabinet. CabinetName: {}, SessionId: {}", cabinetName, 
-                sessionId != null ? sessionId.substring(0, Math.min(10, sessionId.length())) + "..." : "null");
-        
-        if (sessionId == null || sessionId.trim().isEmpty()) {
-            logger.warn("Session ID is null or empty, may not disconnect properly. CabinetName: {}", cabinetName);
-        }
-        
-        try {
-            logger.debug("Generating disconnect cabinet XML");
-            String inpXML = objInp.getDisconnectCabinetXml(cabinetName, this.sessionId);
-            logger.debug("Disconnect XML generated. Length: {}", inpXML != null ? inpXML.length() : 0);
-            logger.trace("Executing XML to disconnect from cabinet via DMS Call Broker");
-            String response = operations.executeXML(inpXML);
-            logger.info("Cabinet disconnected successfully. CabinetName: {}, Response length: {}", 
-                    cabinetName, response != null ? response.length() : 0);
-            logger.debug("Disconnection response received");
-            logger.trace("Exiting disconnect() method with success");
-        } catch (com.newgen.cig.cayman.document.exception.CabinetConnectionException e) {
-            logger.error("CabinetConnectionException occurred while disconnecting from cabinet. CabinetName: {}", cabinetName, e);
-            throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected exception occurred while disconnecting from cabinet. CabinetName: {}", cabinetName, e);
-            throw new com.newgen.cig.cayman.document.exception.CabinetConnectionException("Failed to disconnect from cabinet: " + e.getMessage(), e);
         }
     }
 }

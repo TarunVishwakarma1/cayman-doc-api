@@ -45,12 +45,8 @@ public class CabinetProperties {
     private String siteId;
     @Value("${newgen.cayman.connect.cabinet.volumeId}")
     private String volumeId;
-    @Value("${newgen.cayman.connect.cabinet.sitePort}")
-    private String sitePort;
-    @Value("${newgen.cayman.connect.cabinet.siteIP}")
-    private String siteIP;
-    @Value("${newgen.cayman.connect.cabinet.siteHeader}")
-    private String site;
+    @Value("${newgen.cayman.connect.cabinet.siteURL}")
+    private String siteURL;
     @Value("${newgen.cayman.connect.cabinet.siteURI}")
     private String siteURI;
     @Value("${newgen.cayman.connect.cabinet.site.document.request}")
@@ -61,8 +57,8 @@ public class CabinetProperties {
     @PostConstruct
     public void init() {
         logger.info("CabinetProperties component initialized");
-        logger.debug("Cabinet configuration - Name: {}, Username: {}, JTS IP: {}, JTS Port: {}, Site: {}, Site IP: {}, Site Port: {}", 
-                cabinetName, username, jtsIP, jtsPort, site, siteIP, sitePort);
+        logger.debug("Cabinet configuration - Name: {}, Username: {}, JTS IP: {}, JTS Port: {}, SiteURL: {} ",
+                cabinetName, username, jtsIP, jtsPort, siteURL);
         logger.trace("All cabinet properties loaded from configuration");
     }
 
@@ -138,35 +134,13 @@ public class CabinetProperties {
         logger.trace("Setting volume ID: {}", volumeId);
         this.volumeId = volumeId;
     }
-
-    public String getSitePort() {
-        logger.trace("Getting site port");
-        return sitePort;
+    public String getSiteURL() {
+        logger.trace("Getting site URL");
+        return siteURL;
     }
-
-    public void setSitePort(String sitePort) {
-        logger.trace("Setting site port: {}", sitePort);
-        this.sitePort = sitePort;
-    }
-
-    public String getSiteIP() {
-        logger.trace("Getting site IP");
-        return siteIP;
-    }
-
-    public void setSiteIP(String siteIP) {
-        logger.trace("Setting site IP: {}", siteIP != null ? "***" : "null");
-        this.siteIP = siteIP;
-    }
-
-    public String getSite() {
-        logger.trace("Getting site");
-        return site;
-    }
-
-    public void setSite(String site) {
-        logger.trace("Setting site: {}", site);
-        this.site = site;
+    public void setSiteURL(String siteURL) {
+        logger.trace("Setting site URL: {}", siteURL);
+        this.siteURL = siteURL;
     }
 
     public String getSiteURI() {

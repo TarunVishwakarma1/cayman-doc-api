@@ -94,14 +94,14 @@ public class DocumentImpl implements DocumentInterface {
         logger.trace("Entering fetchDoc() method with docIndex: {}", docIndex);
         logger.info("Fetching document. DocIndex: {}", docIndex);
         
-        // Validate docIndex
         if (docIndex == null || docIndex.trim().isEmpty()) {
             logger.error("Document index is null or empty");
             throw new InvalidParameterException("Document index cannot be null or empty");
         }
         
-        String url = properties.getSite() + properties.getSiteIP() + ":" + properties.getSitePort() + 
-                     properties.getSiteURI() + properties.getDocumentRequest();
+        String url = properties.getSiteURL()
+                + properties.getSiteURI()
+                + properties.getDocumentRequest();
         logger.debug("Constructed API URL: {}", url);
 
         DocumentRequest.NGOGetDocumentBDO bdo = new DocumentRequest.NGOGetDocumentBDO();

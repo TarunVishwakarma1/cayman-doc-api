@@ -1,0 +1,99 @@
+{
+    "NGOExecuteAPOBDO":{
+        "inputData":{
+            "NGOConnectCabinet_Input":{
+                "Option":"NGOConnectCabinet",
+                "UserExist":"N",
+                "cabinetName":"worcuat",
+                "UserName":"liferay",
+                "UserPassword":"Lifer@y1",
+                "locale":"en_us"
+            }
+        },
+        "base64Encoded":"N",
+        "locale":"en_us",
+        "authToken":"",
+        "authTokenType":""
+    }
+}
+
+This is the Request body for connect Cabinet input
+
+And this is the response
+
+{
+    "NGOExecuteAPIResponseBDO": {
+        "base64Encoded": "N",
+        "statusCode": "0",
+        "outputData": {
+            "NGOConnectCabinet_Output": {
+                "Status": 0,
+                "Services": "",
+                "UserDBId": -1904015498,
+                "Cabinet": {
+                    "Account": 1,
+                    "IsAdmin": "Y",
+                    "EnableDataSecurity": "N",
+                    "FTSDatabasePath": "",
+                    "LoginUserIndex": 25,
+                    "CabinetLockFlag": "N",
+                    "PersonalName": "New User",
+                    "SecurityLevel": 2,
+                    "BuildVersion": "10.1.00",
+                    "CabinetType": "B",
+                    "UserTrash": 354,
+                    "IsMakerCheckerEnabled": "N",
+                    "UserName": "Liferay",
+                    "EnableDDTFTS": "N",
+                    "CabinetName": "worcuat",
+                    "UserSentItem": 353,
+                    "UserInbox": 352,
+                    "LastLoginTime": "2025-11-03 04:48:30.133",
+                    "VersionFlag": "N",
+                    "CreationDateTime": "2020-06-02 01:18:17.81",
+                    "ImageVolumeIndex": 1,
+                    "UserPasswordExpire": "N",
+                    "PreferredFolderIndex": 0,
+                    "Privileges": 1111111111111111,
+                    "ThemeColor": "1281dd"
+                },
+                "LeftLoginAttempts": 5,
+                "Option": "NGOConnectCabinet",
+                "Folders": {
+                    "Folder": {
+                        "NoOfSubFolders": 1,
+                        "FinalizedDateTime": "2020-06-02 01:18:17.81",
+                        "Owner": "Supervisor",
+                        "DeletedDateTime": "2020-06-02 01:18:17.81",
+                        "FinalizedFlag": "N",
+                        "ACLMoreFlag": "N",
+                        "FolderName": "worcuat",
+                        "DataDefIndex": 0,
+                        "AccessType": "S",
+                        "FolderType": "G",
+                        "Comment": "",
+                        "LoginUserRights": 111111111111,
+                        "AccessDateTime": "2025-10-27 09:16:00.0",
+                        "FolderLock": "N",
+                        "ACL": "G1#010000011,",
+                        "FolderIndex": 0,
+                        "OwnerIndex": 1,
+                        "VersionFlag": "N",
+                        "CreationDateTime": "2020-06-02 01:18:17.81",
+                        "ImageVolumeIndex": 1,
+                        "ExpiryDateTime": "2120-06-01 01:18:17.81",
+                        "RevisedDateTime": "2020-08-18 09:53:11.247",
+                        "NoOfDocuments": 0,
+                        "ParentFolderIndex": -1,
+                        "Location": "R"
+                    }
+                },
+                "twoFactorAuthenticationFlag": "",
+                "UserType": "S"
+            }
+        }
+    }
+}
+
+
+Please give me Java classes for this request and response

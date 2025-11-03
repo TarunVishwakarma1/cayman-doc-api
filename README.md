@@ -20,34 +20,34 @@
 - [Features](#-features)
 - [Technology Stack](#-technology-stack)
 - [Architecture](#-architecture)
-  - [System Architecture](#system-architecture)
-  - [Project Structure](#project-structure)
-  - [Layered Design](#layered-design)
-  - [Key Components](#key-components)
+    - [System Architecture](#system-architecture)
+    - [Project Structure](#project-structure)
+    - [Layered Design](#layered-design)
+    - [Key Components](#key-components)
 - [Prerequisites](#-prerequisites)
 - [Quick Start](#-quick-start)
 - [Installation](#-installation)
-  - [Build from Source](#1-build-from-source)
-  - [JAR Deployment](#2-jar-deployment-standalone)
-  - [WAR Deployment](#3-war-deployment-for-application-servers)
+    - [Build from Source](#1-build-from-source)
+    - [JAR Deployment](#2-jar-deployment-standalone)
+    - [WAR Deployment](#3-war-deployment-for-application-servers)
 - [Configuration](#%EF%B8%8F-configuration)
-  - [Application Properties](#application-properties)
-  - [Property Encryption](#property-encryption)
-  - [OmniDocs Connection](#omnidocs-connection-settings)
-  - [Rate Limiting](#rate-limiting-configuration)
+    - [Application Properties](#application-properties)
+    - [Property Encryption](#property-encryption)
+    - [OmniDocs Connection](#omnidocs-connection-settings)
+    - [Rate Limiting](#rate-limiting-configuration)
 - [API Documentation](#-api-documentation)
-  - [Document Management APIs](#1-document-management-apis)
-  - [Security & Cryptography APIs](#2-security--cryptography-apis)
-  - [Response Formats](#response-formats)
-  - [Error Handling](#error-handling)
+    - [Document Management APIs](#1-document-management-apis)
+    - [Security & Cryptography APIs](#2-security--cryptography-apis)
+    - [Response Formats](#response-formats)
+    - [Error Handling](#error-handling)
 - [Deployment](#-deployment)
-  - [JBoss/WildFly Deployment](#1-jbosswildfly-deployment)
-  - [Tomcat Deployment](#2-tomcat-deployment)
-  - [Docker Deployment](#3-docker-deployment)
+    - [JBoss/WildFly Deployment](#1-jbosswildfly-deployment)
+    - [Tomcat Deployment](#2-tomcat-deployment)
+    - [Docker Deployment](#3-docker-deployment)
 - [CI/CD with Jenkins](#-cicd-with-jenkins)
-  - [Jenkins Pipeline Setup](#jenkins-pipeline-setup)
-  - [Example Jenkinsfile](#example-jenkinsfile)
-  - [Environment Configuration](#environment-configuration)
+    - [Jenkins Pipeline Setup](#jenkins-pipeline-setup)
+    - [Example Jenkinsfile](#example-jenkinsfile)
+    - [Environment Configuration](#environment-configuration)
 - [Testing](#-testing)
 - [Monitoring & Health Checks](#-monitoring--health-checks)
 - [Security Considerations](#-security-considerations)
@@ -293,10 +293,10 @@ Before installing and running the Cayman Document API, ensure you have:
 ### External Dependencies
 
 - **Newgen OmniDocs JARs**: Place in `libs/` directory
-  - `odweb.jar`
-  - `jtssessionbean.jar`
-  - `ejbclient.jar`
-  - `log4j.jar` (v1.2.14)
+    - `odweb.jar`
+    - `jtssessionbean.jar`
+    - `ejbclient.jar`
+    - `log4j.jar` (v1.2.14)
 
 ### Network Requirements
 
@@ -310,9 +310,8 @@ Before installing and running the Cayman Document API, ensure you have:
 Get up and running in less than 5 minutes:
 
 ```bash
-# 1. Clone the repository
-git clone <repository-url>
-cd cayman-doc-api
+# 1. Navigate to code
+cd path/to/cayman-doc-api
 
 # 2. Ensure external JARs are in libs/ directory
 ls -l libs/
@@ -1651,8 +1650,8 @@ pipeline {
 
 1. **Manage Jenkins** → **Global Tool Configuration**
 2. Add:
-   - **Maven**: Name: `Maven-3.9.11`, Version: 3.9.11
-   - **JDK**: Name: `JDK-17`, JAVA_HOME: Path to JDK 17
+    - **Maven**: Name: `Maven-3.9.11`, Version: 3.9.11
+    - **JDK**: Name: `JDK-17`, JAVA_HOME: Path to JDK 17
 
 ---
 
@@ -1916,8 +1915,6 @@ tail -n 100 logs/cayman-doc-api.log
 - **Swagger UI**: `http://localhost:8081/swagger-ui.html`
 - **API Docs**: `http://localhost:8081/v3/api-docs`
 - **Health Check**: `http://localhost:8081/actuator/health`
-- **Newgen Documentation**: [OmniDocs Official Docs](https://www.newgensoft.com/platform-overview/omnidocs/)
-
 ---
 
 <div align="center">

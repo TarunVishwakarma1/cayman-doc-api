@@ -192,12 +192,7 @@ cayman-doc-api/
 │   │       ├── application.yml                     # Main configuration
 │   │       └── logback-spring.xml                  # Logging configuration
 │   └── test/
-│       └── java/                                   # Unit and integration tests
-├── libs/                                           # External JAR dependencies
-│   ├── odweb.jar                                   # OmniDocs web services
-│   ├── jtssessionbean.jar                          # Session management
-│   ├── ejbclient.jar                               # EJB client
-│   └── log4j.jar                                   # Legacy logging
+│       └── java/                                   # Unit and integration tests                                # Legacy logging
 ├── files/                                          # Configuration templates
 │   ├── jboss-deployment-structure.xml
 │   └── ngdbini/
@@ -289,14 +284,6 @@ Before installing and running the Cayman Document API, ensure you have:
 | **Apache Tomcat** | 10+ | Servlet container deployment |
 | **Docker** | 20+ | Containerized deployment |
 | **Jenkins** | 2.400+ | CI/CD automation |
-
-### External Dependencies
-
-- **Newgen OmniDocs JARs**: Place in `libs/` directory
-    - `odweb.jar`
-    - `jtssessionbean.jar`
-    - `ejbclient.jar`
-    - `log4j.jar` (v1.2.14)
 
 ### Network Requirements
 

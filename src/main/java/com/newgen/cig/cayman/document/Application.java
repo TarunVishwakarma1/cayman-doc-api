@@ -5,14 +5,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * Main application class for the Cayman Document API.
- * 
+ *
  * <p>This Spring Boot application provides RESTful APIs for document management operations
  * including document retrieval, encryption/decryption, and digital signature capabilities.</p>
- * 
+ *
  * <h3>Features:</h3>
  * <ul>
  *   <li>Document retrieval from Newgen OmniDocs cabinet</li>
@@ -21,11 +23,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  *   <li>Rate limiting for API protection</li>
  *   <li>Property encryption for sensitive configuration</li>
  * </ul>
- * 
+ *
  * <h3>Configuration:</h3>
  * <p>Application properties are defined in application.yml with support for encrypted values
  * using the ENC(...) pattern.</p>
- * 
+ *
  * @author Tarun Vishwakarma
  * @version 1.0
  * @since 2025
@@ -33,30 +35,38 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @SpringBootApplication
 @EnableScheduling
-public class Application {
+public class Application extends SpringBootServletInitializer {
 
-	private static final Logger logger = LoggerFactory.getLogger(Application.class);
+    private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
-	/**
-	 * Main entry point for the Cayman Document API application.
-	 * 
-	 * <p>Initializes the Spring Boot application context with property decryption
-	 * support for encrypted configuration values.</p>
-	 * 
-	 * @param args command-line arguments passed to the application
-	 * @throws Exception if the application fails to start
-	 */
-	public static void main(String[] args) {
-		logger.info("Starting Cayman Document API Application");
-		logger.debug("Application arguments count: {}", args != null ? args.length : 0);
-		try {
-			SpringApplication app = new SpringApplication(Application.class);
+    /**
+     * WAR deployment entry point — called when deployed to an external servlet container.
+     */
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        logger.info("Configuring Cayman Document API for WAR deployment");
+        return builder
+                .sources(Application.class)
+                .initializers(new PropertyDecryptionInitializer());
+    }
+
+    /**
+     * JAR entry point — used when running standalone via `java -jar`.
+     *
+     * @param args command-line arguments passed to the application
+     * @throws Exception if the application fails to start
+     */
+    public static void main(String[] args) {
+        logger.info("Starting Cayman Document API Application");
+        logger.debug("Application arguments count: {}", args != null ? args.length : 0);
+        try {
+            SpringApplication app = new SpringApplication(Application.class);
             app.addInitializers(new PropertyDecryptionInitializer());
-			app.run(args);
-			logger.info("Cayman Document API Application started successfully");
-		} catch (Exception e) {
-			logger.error("Failed to start Cayman Document API Application", e);
-			throw e;
-		}
-	}
+            app.run(args);
+            logger.info("Cayman Document API Application started successfully");
+        } catch (Exception e) {
+            logger.error("Failed to start Cayman Document API Application", e);
+            throw e;
+        }
+    }
 }
